@@ -6,7 +6,7 @@ import {
     signInWithEmailAndPassword,
     signOut,
 } from 'firebase/auth';
-import { auth } from '../authentication/firebaseAuth';
+import { auth } from "@/lib/firebase"
 
 const SignIn = () => {
 

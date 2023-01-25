@@ -1,15 +1,19 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
+import  { getAuth} from "firebase/auth";
 
-// TODO: Replace the following with your app's Firebase project configuration
-// See: https://firebase.google.com/docs/web/learn-more#config-object
 const firebaseConfig = {
-    databaseURL: "https://poutine-progav-default-rtdb.firebaseio.com/"
+  apiKey: "AIzaSyDwjgvnvEJWktdGkbwZowlmozZqM9Dciac",
+  authDomain: "poutine-progav.firebaseapp.com",
+  databaseURL: "https://poutine-progav-default-rtdb.firebaseio.com",
+  projectId: "poutine-progav",
+  storageBucket: "poutine-progav.appspot.com",
+  messagingSenderId: "331874935083",
+  appId: "1:331874935083:web:7152d997b066f766fe656e",
+  measurementId: "G-H4VK9E4DQ0"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-
-// Initialize Realtime Database and get a reference to the service
+export const auth = getAuth(app)
 export const database = getDatabase(app);

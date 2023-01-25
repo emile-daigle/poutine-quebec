@@ -1,9 +1,37 @@
+import IRestaurant from "@/interfaces/IRestaurant";
 import { database } from "@/lib/firebase";
-import { DatabaseReference, push, ref, set } from "firebase/database";
-import React, { useState } from "react";
+import {
+  DatabaseReference,
+  get,
+  push,
+  ref,
+  remove,
+  set,
+  getDatabase,
+  child,
+} from "firebase/database";
+import React, { useEffect, useState } from "react";
 
 const Restaurants = () => {
-  const [hello, setHello] = useState({ name: "allo" });
+  const [restaurant, setRestaurant] = useState<IRestaurant>();
+
+  useEffect(() => {
+    const dbRef = ref(database);
+    const dbtest = ref(database, "/restaurants/");
+    get(child(dbRef, "/restaurants?name=Ti-Gus"))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          console.log(snapshot.val());
+          setRestaurant(snapshot.val());
+          console.log(restaurant);
+        } else {
+          console.log("No data available");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   const addRestaurant = () => {
     const restRef = ref(database, "/restaurants/" + "Ti-Gus");
@@ -37,11 +65,20 @@ const Restaurants = () => {
 
     push(restRef, review);
   };
+  const deleteReview = () => {
+    const restRef = ref(
+      database,
+      "/restaurants/Ti-Gus/reviews/-NMdQo3xItxZQC_CsN9r"
+    );
+    remove(restRef);
+  };
 
   return (
     <>
       <button onClick={addRestaurant}>Ajouter un restaurant</button>
       <button onClick={changeReview}>Ajouter un review</button>
+      <button onClick={deleteReview}>Supprimer un review</button>
+      {restaurant && <p>{restaurant.name}</p>}
     </>
   );
 };
