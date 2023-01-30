@@ -27,6 +27,7 @@ import {
     orderBy,
     limit,
     deleteDoc,
+    setDoc,
   } from "firebase/firestore";
 import { auth, database } from "@/lib/firebase"
 
@@ -45,20 +46,22 @@ const [showAdmin, setShowAdmin] = useState(false);
 
 
 const addUser = async () => {
-    const docRef = await addDoc(userCollection,{
-    uid: auth.currentUser?.uid,
-    admin: false,
-    })
+    if (!auth.currentUser) return;
+    const docRef = doc(userCollection, auth.currentUser.uid );
+    const docSet = await setDoc(docRef, {
+      uid: auth.currentUser?.uid,
+      admin: false,
+    });
 }
 
 const getUser = async () => {
     if(!auth.currentUser) return
-    const docRef = doc(database, "User", auth.currentUser?.uid);
+    const docRef = doc(database, "Users", auth.currentUser?.uid);
     const docSnap = await getDoc(docRef);
     setData((data) => {
       return `${docSnap.id} => ${JSON.stringify(docSnap.data())} \n`;
     });
-    console.log(docSnap.data())
+    console.log(docSnap.data()!.admin)
   };
 
 const register = async () => {
@@ -134,7 +137,6 @@ const logout = async () => {
         </div>
         {showAdmin ? <h3>Admin page</h3> : null}
     </div>
-    
   )
 }
 
