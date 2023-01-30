@@ -12,6 +12,7 @@ import { onValue, push, ref } from "firebase/database";
 import { IPos } from "@/interfaces/IPos";
 import IRestaurant from "@/interfaces/IRestaurant";
 import { collection, getDocs } from "firebase/firestore";
+import InfoWindowCustom from "@/components/InfoWindowCustom";
 
 const containerStyle = {
   width: "100%",
@@ -93,9 +94,7 @@ const Map = () => {
         {restaurants?.map((r, pid) => (
           <MarkerF position={r.pos} onClick={() => handleActiveMarker(pid)}>
             {activeMarker === pid ? (
-            <InfoWindowF onCloseClick={() => setActiveMarker(null)}>
-              <p style={{ color: "black" }}>{r.name}</p>
-            </InfoWindowF>
+            <InfoWindowCustom restaurant={r}/>
           ) : null}
           </MarkerF>
         ))}
