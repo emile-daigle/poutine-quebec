@@ -1,15 +1,6 @@
 import IRestaurant from "@/interfaces/IRestaurant";
 import { database } from "@/lib/firebase";
 import {
-  DatabaseReference,
-  get,
-  push,
-  ref,
-  remove,
-  set,
-  child,
-} from "firebase/database";
-import {
   collection,
   addDoc,
   updateDoc,
@@ -66,6 +57,7 @@ const Restaurants = () => {
       console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
     });
   };
+  
   const getRestaurant = async () => {
     const docRef = doc(database, "Restaurants", "ducDJE5bCm8NJ4O2HCnz");
     const docSnap = await getDoc(docRef);

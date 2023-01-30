@@ -12,7 +12,7 @@ import { onValue, push, ref } from "firebase/database";
 import { IPos } from "@/interfaces/IPos";
 import IRestaurant from "@/interfaces/IRestaurant";
 import { collection, getDocs } from "firebase/firestore";
-import InfoWindowCustom from "@/components/InfoWindowCustom";
+import InfoWindowCustom from "@/components/restaurant/InfoWindowCustom";
 
 const containerStyle = {
   width: "100%",
