@@ -7,35 +7,33 @@ import {
   ref,
   remove,
   set,
-  getDatabase,
   child,
 } from "firebase/database";
+import {
+  collection,
+  addDoc,
+  updateDoc,
+  getDocs,
+  getDoc,
+  doc,
+  query,
+  where,
+  orderBy,
+  limit,
+  deleteDoc,
+} from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 
 const Restaurants = () => {
+  const restaurantCollection = collection(database, "Restaurants");
   const [restaurant, setRestaurant] = useState<IRestaurant>();
+  const [data, setData] = useState<string>("");
+  const [recherche, setRecherche] = useState<string>("");
 
-  useEffect(() => {
-    const dbRef = ref(database);
-    const dbtest = ref(database, "/restaurants/");
-    get(child(dbRef, "/restaurants?name=Ti-Gus"))
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          console.log(snapshot.val());
-          setRestaurant(snapshot.val());
-          console.log(restaurant);
-        } else {
-          console.log("No data available");
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+  useEffect(() => {}, []);
 
-  const addRestaurant = () => {
-    const restRef = ref(database, "/restaurants/" + "Ti-Gus");
-    const restaurant = {
+  const addRestaurant = async () => {
+    const docRef = await addDoc(restaurantCollection, {
       reviews: [
         {
           userID: 2,
@@ -52,33 +50,109 @@ const Restaurants = () => {
         lat: 49,
         lng: -70.5,
       },
-    };
-    set(restRef, restaurant);
+      name: "Ti-Gus",
+    });
+    console.log("Document written with ID: ", docRef.id);
   };
-  const changeReview = () => {
-    const restRef = ref(database, "/restaurants/" + "Ti-Gus/reviews");
-    const review = {
-      userID: 2,
-      note: 4,
-      commentaire: "Très bon",
-    };
 
-    push(restRef, review);
+  const getRestaurants = async () => {
+    setData("");
+    const querySnapshot = await getDocs(collection(database, `Restaurants`));
+    querySnapshot.forEach((doc) => {
+      console.log(data);
+      setData((data) => {
+        return data + `${doc.id} => ${JSON.stringify(doc.data())} \n`;
+      });
+      console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
+    });
   };
-  const deleteReview = () => {
-    const restRef = ref(
-      database,
-      "/restaurants/Ti-Gus/reviews/-NMdQo3xItxZQC_CsN9r"
+  const getRestaurant = async () => {
+    const docRef = doc(database, "Restaurants", "ducDJE5bCm8NJ4O2HCnz");
+    const docSnap = await getDoc(docRef);
+    setData((data) => {
+      return `${docSnap.id} => ${JSON.stringify(docSnap.data())} \n`;
+    });
+  };
+
+  const getFilteredRestaurants = async () => {
+    setData("");
+    const citiesRef = collection(database, "Restaurants");
+    const q = query(citiesRef, where("region", "==", "Gaspésie"));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      console.log(data);
+      setData((data) => {
+        return data + `${doc.id} => ${JSON.stringify(doc.data())} \n`;
+      });
+      console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
+    });
+  };
+
+  const getOneRestaurantByName = async () => {
+    setData("");
+    //const q = query(collection(database, "users"), orderBy('metrics/views'), where("age", ">", "25"), where("location", "==", "chicago"), limit(1));
+    const q = query(
+      restaurantCollection,
+      where("region", "==", "Gaspésie"),
+      limit(1)
     );
-    remove(restRef);
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      console.log(data);
+      setData((data) => {
+        return data + `${doc.id} => ${JSON.stringify(doc.data())} \n`;
+      });
+      console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
+    });
   };
 
+  const deleteRestaurant = async () => {
+    //const q = query(collection(database, "users"), orderBy('metrics/views'), where("age", ">", "25"), where("location", "==", "chicago"), limit(1));
+    await deleteDoc(doc(restaurantCollection, "d1kGGz5LVG4GFv6xl3vX"));
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    console.log("Submit");
+    event.preventDefault();
+    setData("");
+    //const q = query(collection(database, "users"), orderBy('metrics/views'), where("age", ">", "25"), where("location", "==", "chicago"), limit(1));
+    const q = query(
+      restaurantCollection,
+      where("name", "==", `${recherche}`),
+      limit(1)
+    );
+    const querySnapshot = await getDocs(q);
+    console.log(querySnapshot.docs);
+    querySnapshot.forEach((doc) => {
+      console.log(data);
+      setData((data) => {
+        return data + `${doc.id} => ${JSON.stringify(doc.data())} \n`;
+      });
+      console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
+    });
+  };
   return (
     <>
-      <button onClick={addRestaurant}>Ajouter un restaurant</button>
-      <button onClick={changeReview}>Ajouter un review</button>
-      <button onClick={deleteReview}>Supprimer un review</button>
+      <div>
+        <button onClick={addRestaurant}>Ajouter un restaurant</button>
+        <button onClick={getRestaurants}>Get all restaurants</button>
+        <button onClick={getRestaurant}>Get one restaurant</button>
+        <button onClick={getFilteredRestaurants}>
+          Get filtered restaurants
+        </button>
+        <button onClick={getOneRestaurantByName}>
+          Get one restaurant by name
+        </button>
+        <button onClick={deleteRestaurant}>Supprimer Restaurant</button>
+      </div>
+      <div>
+        <form onSubmit={(event) => handleSubmit(event)}>
+          <input type="text" value={recherche} onChange={(e) => setRecherche(e.target.value)} placeholder="Nom" />
+          <button type="submit">Rechercher</button>
+        </form>
+      </div>
       {restaurant && <p>{restaurant.name}</p>}
+      <p style={{ whiteSpace: "pre-line" }}>{data}</p>
     </>
   );
 };
