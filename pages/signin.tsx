@@ -6,16 +6,60 @@ import {
     signInWithEmailAndPassword,
     signOut,
 } from 'firebase/auth';
-import { auth } from "@/lib/firebase"
+import {
+    DatabaseReference,
+    get,
+    push,
+    ref,
+    remove,
+    set,
+    child,
+  } from "firebase/database";
+  import {
+    collection,
+    addDoc,
+    updateDoc,
+    getDocs,
+    getDoc,
+    doc,
+    query,
+    where,
+    orderBy,
+    limit,
+    deleteDoc,
+  } from "firebase/firestore";
+import { auth, database } from "@/lib/firebase"
+
 
 const SignIn = () => {
 
+const [data, setData] = useState<string>("");
+const userCollection = collection(database, "Users");
 const [resgisterEmail, setRegisterEmail] = useState("");
 const [resgisterPassword, setRegisterPassword] = useState("");
 
 const [loginEmail, setLoginEmail] = useState("");
 const [loginPassword, setLoginPassword] = useState("");
 
+const [showAdmin, setShowAdmin] = useState(false);
+
+
+const addUser = async () => {
+    const docRef = await addDoc(userCollection,{
+    uid: auth.currentUser?.uid,
+    admin: false,
+    })
+}
+
+const getUser = async () => {
+    if(!auth.currentUser) return
+    const docRef = doc(database, "User", auth.currentUser?.uid);
+    const docSnap = await getDoc(docRef);
+    setData((data) => {
+      return `${docSnap.id} => ${JSON.stringify(docSnap.data())} \n`;
+    });
+    console.log(docSnap.data())
+  };
 
 const register = async () => {
  try {
@@ -24,8 +68,9 @@ const register = async () => {
         resgisterEmail,
         resgisterPassword
         );
+        addUser();
  } catch (error) {
-     
+
  }
   
 };
@@ -36,6 +81,11 @@ const login = async () => {
             loginEmail,
             loginPassword
             );
+    if( auth.currentUser?.uid == 'zK4Zqji7ghXesLpn4YTxpHZ7StN2' || auth.currentUser?.uid == 'zjqv7AWMiHQvidL9w9odYb45Hmj2' )
+    {
+        setShowAdmin(true);
+    }
+    else setShowAdmin(false) 
      } catch (error) {
          
      }
@@ -45,9 +95,11 @@ const logout = async () => {
 };
 
   return (
+
+    
     <div>
     <h1>SignIn</h1>
-        <div>
+        <div>  
         <h3>Register User</h3>
         <input placeholder='Email...'
         onChange={(event) => {
@@ -78,7 +130,9 @@ const logout = async () => {
         <div>
             <h4>User logged In: {auth.currentUser?.email}</h4>
             <button onClick={logout}>Sign out</button>
+            <button onClick={getUser}>get uid</button>
         </div>
+        {showAdmin ? <h3>Admin page</h3> : null}
     </div>
     
   )
