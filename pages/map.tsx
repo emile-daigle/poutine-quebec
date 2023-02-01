@@ -16,7 +16,7 @@ import InfoWindowCustom from "@/components/restaurant/InfoWindowCustom";
 
 const containerStyle = {
   width: "100%",
-  height: "90vh",
+  height: "100vh",
 };
 
 const OPTIONS = {
@@ -53,7 +53,7 @@ const Map = () => {
     }
     setActiveMarker(marker);
   };
-  
+
   const getRestaurants = async () => {
     const querySnapshot = await getDocs(collection(database, `Restaurants`));
     let Restaurants: IRestaurant[] = [];

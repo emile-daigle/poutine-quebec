@@ -11,8 +11,10 @@
 
 :root {
   --white: #ffffff;
-  --primary: #fbdb6b;
-  --secondary: #46515e;
+  --primary: #F9C307;
+  --secondary: #fbdb6b;
+  --tertiary: #46515e;
+  --dark: #303841;
 }
 
 .info-window {
@@ -33,6 +35,7 @@
 }
 
 .info-window button {
+  cursor: pointer;
   color: var(--primary);
   padding: 0.5em 1em;
   border: 2px solid currentColor;

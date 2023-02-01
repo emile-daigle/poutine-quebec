@@ -30,6 +30,30 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { auth, database } from "@/lib/firebase";
+    DatabaseReference,
+    get,
+    push,
+    ref,
+    remove,
+    set,
+    child,
+  } from "firebase/database";
+  import {
+    collection,
+    addDoc,
+    updateDoc,
+    getDocs,
+    getDoc,
+    doc,
+    query,
+    where,
+    orderBy,
+    limit,
+    deleteDoc,
+    setDoc,
+  } from "firebase/firestore";
+import { auth, database } from "@/lib/firebase"
+
 
 const SignIn = () => {
   const [data, setData] = useState<string>("");
@@ -44,7 +68,7 @@ const SignIn = () => {
 
   const addUser = async () => {
     if (!auth.currentUser) return;
-    const docRef = doc(userCollection, "my.custom.id@gmail.com" );
+    const docRef = doc(userCollection, "my.custom.id@gmail.com");
     const docSet = await setDoc(docRef, {
       uid: auth.currentUser?.uid,
       admin: false,
