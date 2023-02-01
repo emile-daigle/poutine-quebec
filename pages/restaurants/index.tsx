@@ -1,14 +1,6 @@
+import RestaurantList from "@/components/restaurant/RestaurantList";
 import IRestaurant from "@/interfaces/IRestaurant";
 import { database } from "@/lib/firebase";
-import {
-  DatabaseReference,
-  get,
-  push,
-  ref,
-  remove,
-  set,
-  child,
-} from "firebase/database";
 import {
   collection,
   addDoc,
@@ -66,6 +58,7 @@ const Restaurants = () => {
       console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
     });
   };
+  
   const getRestaurant = async () => {
     const docRef = doc(database, "Restaurants", "ducDJE5bCm8NJ4O2HCnz");
     const docSnap = await getDoc(docRef);
@@ -147,12 +140,18 @@ const Restaurants = () => {
       </div>
       <div>
         <form onSubmit={(event) => handleSubmit(event)}>
-          <input type="text" value={recherche} onChange={(e) => setRecherche(e.target.value)} placeholder="Nom" />
+          <input
+            type="text"
+            value={recherche}
+            onChange={(e) => setRecherche(e.target.value)}
+            placeholder="Nom"
+          />
           <button type="submit">Rechercher</button>
         </form>
       </div>
       {restaurant && <p>{restaurant.name}</p>}
       <p style={{ whiteSpace: "pre-line" }}>{data}</p>
+      <RestaurantList />
     </>
   );
 };
