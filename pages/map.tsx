@@ -14,7 +14,7 @@ import IRestaurant from "@/interfaces/IRestaurant";
 import { collection, getDocs } from "firebase/firestore";
 import InfoWindowCustom from "@/components/restaurant/InfoWindowCustom";
 import { getAllRestaurants } from "@/lib/api/restaurant";
-import getDistanceOneToOne from "@/lib/google/distance";
+import distance from "@/lib/google/distance";
 
 const containerStyle = {
   width: "100%",
@@ -80,11 +80,16 @@ const Map = () => {
   useEffect(() => {
     if (!restaurants) return;
     let closestDistance: number = Number.MAX_SAFE_INTEGER;
-    let closestID: number;
+    let closestID: number = -1;
     restaurants.map((restaurant, id) => {
-      if (getDistanceOneToOne(pos, restaurant.pos) < closestDistance) {
+      const dist = distance(pos, restaurant.pos)
+      console.log(dist)
+      if (dist < closestDistance) {
+        closestID= id;
+        closestDistance=dist
       }
     });
+    console.log(closestID)
   }, [pos]);
 
   return isLoaded ? (
