@@ -13,6 +13,8 @@ import { IPos } from "@/interfaces/IPos";
 import IRestaurant from "@/interfaces/IRestaurant";
 import { collection, getDocs } from "firebase/firestore";
 import InfoWindowCustom from "@/components/restaurant/InfoWindowCustom";
+import { getAllRestaurants } from "@/lib/api/restaurant";
+import getDistanceOneToOne from "@/lib/google/distance";
 
 const containerStyle = {
   width: "100%",
@@ -29,6 +31,9 @@ interface IPosition {
 const Map = () => {
   const [activeMarker, setActiveMarker] = useState<number | null>(null);
   const [restaurants, setRestaurants] = useState<IRestaurant[]>();
+  const [closestRestaurant, setClosestRestaurant] = useState<number | null>(
+    null
+  );
   const [pos, setPos] = useState<IPosition>({
     lat: 0,
     lng: 0,
@@ -44,9 +49,6 @@ const Map = () => {
 
   const [title, setTitle] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-  };
   const handleActiveMarker = (marker: number) => {
     if (marker === activeMarker) {
       return;
@@ -54,18 +56,11 @@ const Map = () => {
     setActiveMarker(marker);
   };
 
-  const getRestaurants = async () => {
-    const querySnapshot = await getDocs(collection(database, `Restaurants`));
-    let Restaurants: IRestaurant[] = [];
-    querySnapshot.forEach((doc) => {
-      Restaurants.push(doc.data() as IRestaurant);
-      console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
-    });
-    setRestaurants(Restaurants);
-    console.log(restaurants);
-  };
   useEffect(() => {
-    getRestaurants();
+    const fetchRestaurants = async () => {
+      setRestaurants(await getAllRestaurants());
+    };
+    fetchRestaurants();
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -74,13 +69,23 @@ const Map = () => {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           });
-          console.log( position.coords)
+          console.log(position.coords);
         }
       );
     } else {
       alert("La localisation n'est pas supportée dans votre navigateur! ");
     }
   }, []);
+
+  useEffect(() => {
+    if (!restaurants) return;
+    let closestDistance: number = Number.MAX_SAFE_INTEGER;
+    let closestID: number;
+    restaurants.map((restaurant, id) => {
+      if (getDistanceOneToOne(pos, restaurant.pos) < closestDistance) {
+      }
+    });
+  }, [pos]);
 
   return isLoaded ? (
     <>
@@ -93,15 +98,16 @@ const Map = () => {
       >
         {restaurants?.map((r, pid) => (
           <MarkerF position={r.pos} onClick={() => handleActiveMarker(pid)}>
-            {activeMarker === pid ? (
-            <InfoWindowCustom restaurant={r}/>
-          ) : null}
+            {activeMarker === pid ? <InfoWindowCustom restaurant={r} /> : null}
           </MarkerF>
         ))}
-        <MarkerF position={pos} icon={{
-                    url: "Marker/marker-icon.png",
-                    scaledSize: new window.google.maps.Size(40, 64),
-                  }}/>
+        <MarkerF
+          position={pos}
+          icon={{
+            url: "Marker/marker-icon.png",
+            scaledSize: new window.google.maps.Size(40, 64),
+          }}
+        />
       </GoogleMap>
     </>
   ) : (

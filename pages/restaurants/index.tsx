@@ -1,5 +1,6 @@
 import RestaurantList from "@/components/restaurant/RestaurantList";
 import IRestaurant from "@/interfaces/IRestaurant";
+import { getRestaurantByName } from "@/lib/api/restaurant";
 import { database } from "@/lib/firebase";
 import {
   collection,
@@ -22,7 +23,12 @@ const Restaurants = () => {
   const [data, setData] = useState<string>("");
   const [recherche, setRecherche] = useState<string>("");
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+   const test = async () => {
+    await getRestaurantByName("Ti-Gus");
+   }
+   test()
+  }, []);
 
   const addRestaurant = async () => {
     const docRef = await addDoc(restaurantCollection, {
@@ -151,7 +157,6 @@ const Restaurants = () => {
       </div>
       {restaurant && <p>{restaurant.name}</p>}
       <p style={{ whiteSpace: "pre-line" }}>{data}</p>
-      <RestaurantList />
     </>
   );
 };

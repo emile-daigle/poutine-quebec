@@ -6,38 +6,6 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import {
-  DatabaseReference,
-  get,
-  push,
-  ref,
-  remove,
-  set,
-  child,
-} from "firebase/database";
-import {
-  collection,
-  addDoc,
-  updateDoc,
-  getDocs,
-  getDoc,
-  doc,
-  query,
-  where,
-  orderBy,
-  limit,
-  deleteDoc,
-  setDoc,
-} from "firebase/firestore";
-import { auth, database } from "@/lib/firebase";
-    DatabaseReference,
-    get,
-    push,
-    ref,
-    remove,
-    set,
-    child,
-  } from "firebase/database";
   import {
     collection,
     addDoc,

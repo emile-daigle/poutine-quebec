@@ -9,4 +9,5 @@ export interface IRestaurantInfo {
   name: string;
   pos: IPos;
   address : string;
+  distance? : number;
 }
