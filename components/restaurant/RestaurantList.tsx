@@ -6,7 +6,8 @@ const RestaurantList = () => {
 
   console.log("Les restaurants sont : " + restaurants);
 
-  return <>{}</>;
+  return <div>RestaurantList</div>;
+
 };
 
 export default RestaurantList;
