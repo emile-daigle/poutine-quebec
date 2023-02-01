@@ -1,5 +1,5 @@
 import { async } from '@firebase/util'
-import React , { useState } from 'react'
+import React , { useState, useEffect } from 'react'
 import { 
     createUserWithEmailAndPassword ,
     onAuthStateChanged,
@@ -30,7 +30,7 @@ import {
     setDoc,
   } from "firebase/firestore";
 import { auth, database } from "@/lib/firebase"
-
+import FormAjoutRestaurant from '@/components/layout/FormAjoutRestaurant';
 
 const SignIn = () => {
 
@@ -61,7 +61,13 @@ const getUser = async () => {
     setData((data) => {
       return `${docSnap.id} => ${JSON.stringify(docSnap.data())} \n`;
     });
+    if(docSnap.data()!.admin == true)
+    {
+        setShowAdmin(true);
+    }
+    else setShowAdmin(false);
     console.log(docSnap.data()!.admin)
+    console.log(showAdmin)
   };
 
 const register = async () => {
@@ -74,32 +80,22 @@ const register = async () => {
         addUser();
  } catch (error) {
 
- }
+}
   
 };
 const login = async () => {
-    try {
         const user =  await signInWithEmailAndPassword(
             auth,
             loginEmail,
             loginPassword
-            );
-    if( auth.currentUser?.uid == 'zK4Zqji7ghXesLpn4YTxpHZ7StN2' || auth.currentUser?.uid == 'zjqv7AWMiHQvidL9w9odYb45Hmj2' )
-    {
-        setShowAdmin(true);
-    }
-    else setShowAdmin(false) 
-     } catch (error) {
-         
-     }
+            );  
+        getUser()
 };
 const logout = async () => {
     await signOut(auth);
 };
 
   return (
-
-    
     <div>
     <h1>SignIn</h1>
         <div>  
@@ -133,9 +129,10 @@ const logout = async () => {
         <div>
             <h4>User logged In: {auth.currentUser?.email}</h4>
             <button onClick={logout}>Sign out</button>
-            <button onClick={getUser}>get uid</button>
         </div>
         {showAdmin ? <h3>Admin page</h3> : null}
+
+        <FormAjoutRestaurant></FormAjoutRestaurant>
     </div>
   )
 }
