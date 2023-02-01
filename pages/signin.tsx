@@ -1,36 +1,27 @@
-import { async } from '@firebase/util'
-import React , { useState, useEffect } from 'react'
-import { 
-    createUserWithEmailAndPassword ,
-    onAuthStateChanged,
-    signInWithEmailAndPassword,
-    signOut,
-} from 'firebase/auth';
+import { async } from "@firebase/util";
+import React, { useState } from "react";
 import {
-  collection,
-  addDoc,
-  updateDoc,
-  getDocs,
-  getDoc,
-  doc,
-  query,
-  where,
-  orderBy,
-  limit,
-  deleteDoc,
-  setDoc,
-} from "firebase/firestore";
-import {
-  DatabaseReference,
-  get,
-  push,
-  ref,
-  remove,
-  set,
-  child,
-} from "firebase/database";
-
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
+  import {
+    collection,
+    addDoc,
+    updateDoc,
+    getDocs,
+    getDoc,
+    doc,
+    query,
+    where,
+    orderBy,
+    limit,
+    deleteDoc,
+    setDoc,
+  } from "firebase/firestore";
 import { auth, database } from "@/lib/firebase"
+
 import FormAjoutRestaurant from '@/components/layout/FormAjoutRestaurant';
 
 const SignIn = () => {

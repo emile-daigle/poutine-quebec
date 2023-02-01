@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { collection, CollectionReference, getFirestore } from "firebase/firestore";
 import  { getAuth} from "firebase/auth";
+import IRestaurant from "@/interfaces/IRestaurant";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDwjgvnvEJWktdGkbwZowlmozZqM9Dciac",
@@ -16,3 +17,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app)
 export const database = getFirestore(app);
+
+const dataPoint = <T>(collectionPath: string) => collection(database, collectionPath) as CollectionReference<T>;
+
+export const db = {
+  restaurants: dataPoint<IRestaurant>("Restaurants"),
+}
