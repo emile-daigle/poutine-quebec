@@ -1,16 +1,16 @@
 import { IPos } from "@/interfaces/IPos";
 
-export default async function getDistanceOneToOne(pos1: IPos, pos2: IPos) {
-  const Location1Str = pos1.lat + "," + pos1.lng;
-  const Location2Str = pos2.lat + "," + pos2.lng;
-
-  let ApiURL = "https://maps.googleapis.com/maps/api/distancematrix/json?";
-
-  let params = `origins=${Location1Str}&destinations=${Location2Str}&key=${"GOOGLEKEY"}`; // you need to get a key
-  let finalApiURL = `${ApiURL}${encodeURI(params)}`;
-
-  let fetchResult = await fetch(finalApiURL); // call API
-  let Result = await fetchResult.json(); // extract json
-
-  return Result.rows[0].elements[0].distance as number;
+export default function distance(pos1: IPos, pos2: IPos) {
+  var radlat1 = (Math.PI * pos1.lat) / 180;
+  var radlat2 = (Math.PI * pos2.lat) / 180;
+  var theta = pos1.lng - pos2.lng;
+  var radtheta = (Math.PI * theta) / 180;
+  var dist =
+    Math.sin(radlat1) * Math.sin(radlat2) +
+    Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+  dist = Math.acos(dist);
+  dist = (dist * 180) / Math.PI;
+  dist = dist * 60 * 1.1515;
+  dist = dist * 1.609344;
+  return dist;
 }
