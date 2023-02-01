@@ -1,3 +1,4 @@
+import RestaurantList from "@/components/restaurant/RestaurantList";
 import IRestaurant from "@/interfaces/IRestaurant";
 import { database } from "@/lib/firebase";
 import {
@@ -139,12 +140,18 @@ const Restaurants = () => {
       </div>
       <div>
         <form onSubmit={(event) => handleSubmit(event)}>
-          <input type="text" value={recherche} onChange={(e) => setRecherche(e.target.value)} placeholder="Nom" />
+          <input
+            type="text"
+            value={recherche}
+            onChange={(e) => setRecherche(e.target.value)}
+            placeholder="Nom"
+          />
           <button type="submit">Rechercher</button>
         </form>
       </div>
       {restaurant && <p>{restaurant.name}</p>}
       <p style={{ whiteSpace: "pre-line" }}>{data}</p>
+      <RestaurantList />
     </>
   );
 };
