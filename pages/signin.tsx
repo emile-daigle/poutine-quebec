@@ -6,6 +6,38 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
+import {
+  DatabaseReference,
+  get,
+  push,
+  ref,
+  remove,
+  set,
+  child,
+} from "firebase/database";
+import {
+  collection,
+  addDoc,
+  updateDoc,
+  getDocs,
+  getDoc,
+  doc,
+  query,
+  where,
+  orderBy,
+  limit,
+  deleteDoc,
+  setDoc,
+} from "firebase/firestore";
+import { auth, database } from "@/lib/firebase";
+    DatabaseReference,
+    get,
+    push,
+    ref,
+    remove,
+    set,
+    child,
+  } from "firebase/database";
   import {
     collection,
     addDoc,
@@ -21,7 +53,7 @@ import {
     setDoc,
   } from "firebase/firestore";
 import { auth, database } from "@/lib/firebase"
-
+import FormAjoutRestaurant from '@/components/layout/FormAjoutRestaurant';
 
 const SignIn = () => {
   const [data, setData] = useState<string>("");
@@ -50,7 +82,13 @@ const SignIn = () => {
     setData((data) => {
       return `${docSnap.id} => ${JSON.stringify(docSnap.data())} \n`;
     });
-    console.log(docSnap.data());
+    if(docSnap.data()!.admin == true)
+    {
+        setShowAdmin(true);
+    }
+    else setShowAdmin(false);
+    console.log(docSnap.data()!.admin)
+    console.log(showAdmin)
   };
 
   const register = async () => {
@@ -59,26 +97,23 @@ const SignIn = () => {
         auth,
         resgisterEmail,
         resgisterPassword
-      );
-      addUser();
-    } catch (error) {}
-  };
-  const login = async () => {
-    try {
-      const user = await signInWithEmailAndPassword(
-        auth,
-        loginEmail,
-        loginPassword
-      );
-      if (
-        auth.currentUser?.uid == "zK4Zqji7ghXesLpn4YTxpHZ7StN2" ||
-        auth.currentUser?.uid == "zjqv7AWMiHQvidL9w9odYb45Hmj2"
-      ) {
-        setShowAdmin(true);
-      } else setShowAdmin(false);
-    } catch (error) {}
-  };
-  const logout = async () => {
+
+        );
+        addUser();
+ } catch (error) {
+
+}
+  
+};
+const login = async () => {
+        const user =  await signInWithEmailAndPassword(
+            auth,
+            loginEmail,
+            loginPassword
+            );  
+        getUser()
+};
+const logout = async () => {
     await signOut(auth);
   };
 
@@ -121,12 +156,14 @@ const SignIn = () => {
         <button onClick={login}>login</button>
       </div>
 
-      <div>
-        <h4>User logged In: {auth.currentUser?.email}</h4>
-        <button onClick={logout}>Sign out</button>
-        <button onClick={getUser}>get uid</button>
-      </div>
-      {showAdmin ? <h3>Admin page</h3> : null}
+
+        <div>
+            <h4>User logged In: {auth.currentUser?.email}</h4>
+            <button onClick={logout}>Sign out</button>
+        </div>
+        {showAdmin ? <h3>Admin page</h3> : null}
+
+        <FormAjoutRestaurant></FormAjoutRestaurant>
     </div>
   );
 };
