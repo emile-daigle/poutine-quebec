@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { collection, CollectionReference, getFirestore } from "firebase/firestore";
 import  { getAuth} from "firebase/auth";
 import IRestaurant from "@/interfaces/IRestaurant";
+import IUser from "@/interfaces/IUser";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDwjgvnvEJWktdGkbwZowlmozZqM9Dciac",
@@ -21,5 +22,6 @@ export const database = getFirestore(app);
 const dataPoint = <T>(collectionPath: string) => collection(database, collectionPath) as CollectionReference<T>;
 
 export const db = {
+  users: dataPoint<IUser>("Users"),
   restaurants: dataPoint<IRestaurant>("Restaurants"),
 }

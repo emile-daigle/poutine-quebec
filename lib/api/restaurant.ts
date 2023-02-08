@@ -1,5 +1,5 @@
 import { db } from "@/lib/firebase";
-import { doc, getDoc, getDocs, limit, query, where} from "firebase/firestore";
+import { doc, getDoc, getDocs, limit, query, where } from "firebase/firestore";
 import IRestaurant from "@/interfaces/IRestaurant";
 
 export const getAllRestaurants = async () => {
@@ -7,25 +7,23 @@ export const getAllRestaurants = async () => {
   console.log(userDoc.docs);
   let Restaurants: IRestaurant[] = [];
   userDoc.forEach((doc) => {
-    Restaurants.push(doc.data());
+    Restaurants.push({ ...doc.data(), uid: doc.id });
   });
-  console.log(Restaurants)
-  return Restaurants
+  console.log(Restaurants);
+  return Restaurants;
 };
 
 export const getRestaurantById = async () => {
   const docRef = doc(db.restaurants, "TEST");
   const docSnap = await getDoc(docRef);
-  return docSnap
+  if (!docSnap.exists()) return undefined;
+  const restaurant: IRestaurant = { ...docSnap.data(), uid: docSnap.id };
+  return restaurant;
 };
 
-export const getRestaurantByName = async (name : string) => {
-  const q = query(
-    db.restaurants,
-    where("name", "==", name),
-    limit(1)
-  );
+export const getRestaurantByName = async (name: string) => {
+  const q = query(db.restaurants, where("name", "==", name), limit(1));
   const querySnapshot = await getDocs(q);
-  console.log(querySnapshot.docs[0].data())
-  return querySnapshot.docs[0] 
+  if (querySnapshot.empty) return undefined;
+  return querySnapshot.docs[0];
 };
