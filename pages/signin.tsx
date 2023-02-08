@@ -9,20 +9,14 @@ import {
 } from "firebase/auth";
 import {
   collection,
-  addDoc,
-  updateDoc,
-  getDocs,
-  getDoc,
   doc,
-  query,
-  where,
-  orderBy,
-  limit,
-  deleteDoc,
   setDoc,
 } from "firebase/firestore";
 import { auth, database } from "@/lib/firebase"
 import FormAjoutRestaurant from '@/components/layout/FormAjoutRestaurant';
+import { getUserById } from "@/lib/api/users";
+import Formlogin from "@/components/layout/FormLogin";
+import FormRegister from "@/components/layout/FormRegister";
 
 const SignIn = () => {
   const [data, setData] = useState<string>("");
@@ -38,33 +32,26 @@ const SignIn = () => {
 
   const addUser = async () => {
     if (!auth.currentUser) return;
-    const docRef = doc(userCollection, "my.custom.id@gmail.com");
+    const docRef = doc(userCollection, auth.currentUser.uid);
     const docSet = await setDoc(docRef, {
       uid: auth.currentUser?.uid,
       admin: false,
     });
   };
 
+
+
   const getUser = async () => {
     if (!auth.currentUser) return;
-    const docRef = doc(database, "Users", auth.currentUser?.uid);
-    const docSnap = await getDoc(docRef);
-    setData((data) => {
-      return `${docSnap.id} => ${JSON.stringify(docSnap.data())} \n`;
-    });
-    if (docSnap.exists()) {
-      if (docSnap.data()!.admin == true) {
+    const user = await getUserById(auth.currentUser.uid)
+    if(!user)return;
+      if (user.admin) {
         setShowAdmin(true);
-        console.log(docSnap.data()!.admin)
+        console.log(user?.admin)
       }
       else setShowAdmin(false);
-      console.log(docSnap.data()!.admin)
+      console.log(user.admin)
       console.log(showAdmin)
-    }
-    else {
-      console.log("Document does not exist")
-    }
-
   };
 
   const register = async () => {
@@ -113,25 +100,23 @@ const SignIn = () => {
 
         <button onClick={register}>Create User</button>
       </div>
-
       <div>
-        <h3>Login</h3>
-        <input
-          placeholder="Email..."
-          onChange={(event) => {
-            setLoginEmail(event.target.value);
-          }}
-        />
-        <input
-          placeholder="Password..."
-          onChange={(event) => {
-            setLoginPassword(event.target.value);
-          }}
-        />
+    <h3>Login</h3>
+    <input
+      placeholder="Email..."
+      onChange={(event) => {
+        setLoginEmail(event.target.value);
+      }}
+    />
+    <input
+      placeholder="Password..."
+      onChange={(event) => {
+        setLoginPassword(event.target.value);
+      }}
+    />
 
-        <button onClick={login}>login</button>
-      </div>
-
+    <button onClick={login}>login</button>
+  </div>
 
       <div>
         <h4>User logged In: {auth.currentUser?.email}</h4>
@@ -139,8 +124,16 @@ const SignIn = () => {
       </div>
       {showAdmin ? <h3>Admin page</h3> : null}
 
-      <FormAjoutRestaurant></FormAjoutRestaurant>
+      {showAdmin ? <FormAjoutRestaurant></FormAjoutRestaurant> : null}
+
+      <Formlogin/>
+
+      <FormRegister/>
+
+      
     </div>
+
+    
   );
 };
 

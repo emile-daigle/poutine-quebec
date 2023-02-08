@@ -16,5 +16,5 @@ export const getAllUsers = async () => {
 export const getUserById = async (id : string) => {
   const docRef = doc(db.users, id);
   const docSnap = await getDoc(docRef);
-  return docSnap
+  return docSnap.data()
 };
