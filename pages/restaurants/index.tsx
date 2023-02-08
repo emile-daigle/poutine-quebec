@@ -1,7 +1,8 @@
 import RestaurantList from "@/components/restaurant/RestaurantList";
 import IRestaurant from "@/interfaces/IRestaurant";
-import { getRestaurantByName } from "@/lib/api/restaurant";
+import { getAllRestaurants } from "@/lib/api/restaurant";
 import { database } from "@/lib/firebase";
+import { set } from "firebase/database";
 import {
   collection,
   addDoc,
@@ -19,15 +20,14 @@ import React, { useEffect, useState } from "react";
 
 const Restaurants = () => {
   const restaurantCollection = collection(database, "Restaurants");
-  const [restaurant, setRestaurant] = useState<IRestaurant>();
+  const [restaurants, setRestaurants] = useState<IRestaurant[]>([]);
   const [data, setData] = useState<string>("");
   const [recherche, setRecherche] = useState<string>("");
 
   useEffect(() => {
-   const test = async () => {
-    await getRestaurantByName("Ti-Gus");
-   }
-   test()
+    getAllRestaurants().then((result) => {
+      setRestaurants(result || []);
+    });
   }, []);
 
   const addRestaurant = async () => {
@@ -64,7 +64,7 @@ const Restaurants = () => {
       console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
     });
   };
-  
+
   const getRestaurant = async () => {
     const docRef = doc(database, "Restaurants", "ducDJE5bCm8NJ4O2HCnz");
     const docSnap = await getDoc(docRef);
@@ -155,7 +155,11 @@ const Restaurants = () => {
           <button type="submit">Rechercher</button>
         </form>
       </div>
-      {restaurant && <p>{restaurant.name}</p>}
+      <ul>
+        {restaurants.map((restaurant) => (
+          <li key={restaurant.id}>{restaurant.name}</li>
+        ))}
+      </ul>
       <p style={{ whiteSpace: "pre-line" }}>{data}</p>
     </>
   );
