@@ -61,6 +61,70 @@
   color: lightgray;
 }
 
+.form-login-container {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
+.form-login {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  width: 85%;
+  max-width: 450px;
+}
+
+.form-login-container * {
+ /* outline-color: #f9c307;
+  outline-width: 2px;
+  outline-style: solid;*/
+}
+.form-login input {
+ width: 100%;
+ border: 1px solid black;
+ border-radius: 2px;
+ padding: 0.3em 0.4em; /*pading Vertical (top bottom), pading Vertical (left right)*/
+}
+.form-login label {
+  padding-bottom: 4px; /*pading Vertical (top bottom), pading Vertical (left right)*/
+  display: inline-block;
+ }
+.form-login-oublier {
+  width: 50px;
+}
+ .form-login div {
+  width: 100%;
+  
+   /*pading Vertical (top bottom), pading Vertical (left right)*/
+ }
+
+ .form-login button {
+  background-color: var(--primary);
+  border-radius: 5px;
+  width: 100%;
+  padding: 0.6em;
+  color: var(--dark);
+  font-weight: 600;
+ }
+ .form-login button:hover {
+   background-color: var(--secondary);
+ }
+
+ .form-login p {
+  text-align: right;
+  padding-top: 6px;
+  font-size: 0.8em;
+ }
+ .form-login>p {
+  font-size: 1em;
+  color: red;
+  font-weight: 600;
+ }
+ .form-login input:invalid {
+  border-color: red;
+ }
 
 /* ======================================*/
 /*=============== header ================*/
@@ -481,4 +545,5 @@ h3{
         height: 900px;
     }
 } 
+
 

@@ -38,7 +38,6 @@ function FormAjoutRestaurant() {
     console.log("Submit");
     event.preventDefault();
     setData("");
-    //const q = query(collection(database, "users"), orderBy('metrics/views'), where("age", ">", "25"), where("location", "==", "chicago"), limit(1));
     const docRef = await addDoc(restaurantCollection, {
       pos: {
         lat: latitudeRestaurant,
@@ -58,6 +57,7 @@ function FormAjoutRestaurant() {
   <button type="submit">Envoyer le formulaire</button>
   </form>
 )
+// Test
 }
 
 export default FormAjoutRestaurant;
