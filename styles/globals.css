@@ -126,3 +126,418 @@
   border-color: red;
  }
 
+/* ======================================*/
+/*=============== header ================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+/*======== Tout ========*/
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto Regular 400', sans-serif;
+    overflow: hidden;
+}
+
+.contenu{
+    display: flex;
+    flex-direction: column;
+}
+
+/*========= En-tête ==========*/
+
+.barreHoriz{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.milieu{
+    width: 0%;
+    float: left;
+}
+
+/*============ header pt1 - Logo et burger =============*/
+
+.burgerNAV {
+    float: left;
+    margin-top: -1em;
+}
+
+#burgMenu{
+    width: 3em;
+}
+
+.Logo{
+    width: 10%;
+    float: left;
+    margin-top: -1em;
+}
+
+#poutLogo{
+    width: 15em;
+}
+
+/*============ header pt2 - barre de navigation =============*/
+
+.barreNav{
+    display: flex;
+    flex-direction: row;
+    margin-top: -1em;
+}
+
+#accueilB{
+    width: 70px;
+}
+
+#carteB{
+    width: 160px;
+}
+
+#listeB{
+    width: 150px;
+}
+
+#aProposB{
+    width: 70px;
+}
+
+/*============ header pt3 - barre de connexion =============*/
+
+.barreSigning {
+    width: 420px;
+    float: right;
+}
+
+.bout{
+    background: none;
+    border : none;
+    color : #303841;
+    font-family: 'Roboto Regular 400', sans-serif;
+    size: 14px;
+    margin : 5px
+}
+
+.boutC{
+    background: none;
+    border : none;
+    color : #303841;
+    font-family: 'Roboto Regular 400', sans-serif;
+    size: 14px;
+    margin-right: 10px;
+}
+
+.bout:hover{
+    color : blue;
+    text-decoration: underline;
+}
+
+.boutC:hover{
+    color : blue;
+    text-decoration: underline;
+}
+
+.inscripBout{
+    background-color: #F9C307;
+    color : #303841;
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+    width: 110px;
+    font-family: 'Roboto Bold 700', sans-serif;
+    size: 14px;
+}
+
+.inscripBout:hover{
+    background-color: #FBDB6B;
+}
+
+
+/*============ Texte au centre ==============*/
+
+.milieuDePage{
+    display: flex;
+    flex-direction: column;
+    width: 110%;
+    float: left;
+}
+
+.centerText{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1em;
+    margin-top: 1em;
+}
+
+h2{
+    font-family: 'Roboto Bold 700', sans-serif;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+/*========== Texte et bouton évaluation ===========*/
+
+h3{
+    font-family: 'Roboto Bold 700', sans-serif;
+    font-size: 26px;
+    margin-top: 3em;
+}
+
+.boutPoutEval{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 1em;
+    margin-top: -10px;
+}
+
+.boutonFleche{
+    background-color: #F9C307;
+    color : #303841;
+    border: none;
+    border-radius: 5px;
+    width: 55px;
+    height: 50px;
+    margin-top: 4.5em;
+    margin-left: 3em;
+}
+
+.boutonFleche:hover{
+    background-color: #FBDB6B;
+}
+
+#imgFleche{
+    width: 90%;
+}
+
+
+/*========== Bas de page ===========*/
+
+.basDePage{
+    margin-top: 0em;
+    width: 100%;
+    float: right;
+}
+
+#poutImg{
+    width: 600px;
+    height: 300px;
+    margin-top : 70px;
+    margin-left: -50px;
+
+}
+
+#circle {
+    background: #FBDB6B;
+    border-radius: 50%;
+    width: 500px;
+    height: 450px;
+    margin-left: 140px;
+
+}
+
+/*=========== responsiveness header ============*/
+
+
+@media only screen and (max-width: 600px) {
+    .col-1{
+        width: 100%;
+    }
+    .col-2{
+        width: 0%;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .col-1{
+        width: 100%;
+    }
+    .col-2{
+        width: 0%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .col-1{
+        width: 250px;
+    }
+    .col-2{
+        width: 250px;
+    }
+    .barreSigning{
+        width: 200px;
+    }
+
+}
+
+@media only screen and (max-width: 992px){
+    .Logo{
+        display:none;
+    }
+    .barreNav{
+        display:none;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .col-1{
+        width: 60px;
+    }
+    .col-2{
+        width: 20px;
+    }
+    .burgerNAV{
+        display: none;
+    }
+    .barreSigning{
+        width: 200px;
+    }
+    .Logo{
+        width: 200px
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .col-1{
+        width: 175px;
+    }
+    .col-2{
+        width: 175px;
+    }
+    .barreSigning{
+        width: 250px;
+    }
+}
+
+/*=========== responsiveness ============*/
+
+@media only screen and (max-width: 600px) {
+    h2{
+        font-size : 40px;
+    }
+    #poutImg{
+        transform: translate(-30px, -10px);
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    h2{
+        font-size : 40px;
+    }
+    #poutImg{
+        margin-left: 500;
+        transform: translate(-30px, -10px);
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    h2{
+        font-size : 50px;
+    }
+    p{
+        font-size: 20px;
+    }
+
+    .milieuDePage{
+        transform: translate(100px, 0);
+    }
+
+    .basDePage{
+        position: relative;
+        width: 100%;
+        float: right;
+    }
+    #poutImg{
+        margin-left: 500;
+        transform: translate(-10px, -30px);
+    }
+    #circle{
+        margin-left: 500;
+        transform: translate(300px, 0px);
+    }
+
+}
+
+@media only screen and (min-width: 992px) {
+    h2{
+        font-size : 60px;
+    }
+    h3{
+        font-size : 40px;
+    }
+    p{
+        font-size: 24px;
+    }
+
+    .milieuDePage{
+        transform: translate(200px, 0);
+
+    }
+
+    .basDePage{
+        position: relative;
+        width: 100%;
+        float: right;
+    }
+    #poutImg{
+        transform: translate(0px, 0px);
+    }
+    #circle{
+        transform: translate(500px, -200px);
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    h2{
+        font-size : 60px;
+    }
+    .milieuDePage{
+        margin-left: 10em;
+    }
+
+    .basDePage{
+        position: relative;
+        width: 100%;
+        float: right;
+    }
+    #poutImg{
+        margin-left: 500;
+        transform: translate(-50px, -10px);
+        width: 900px;
+        height: 500px;
+    }
+    #circle{
+        margin-left: 500;
+        transform: translate(800px, -300px);
+        width: 700px;
+        height: 700px;
+    }
+
+}
+
+@media only screen and (min-width: 1600px){
+    .basDePage{
+        position: relative;
+        width: 100%;
+        float: right;
+    }
+    #poutImg{
+        margin-left: 500;
+        transform: translate(-20px, 30px);
+        width: 1100px;
+        height: 600px;
+    }
+    #circle{
+        margin-left: 500;
+        transform: translate(1100px, -300px);
+        width: 1000px;
+        height: 900px;
+    }
+} 
+
+
