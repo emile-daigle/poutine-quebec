@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Arsenal&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -10,8 +12,9 @@
 }
 
 :root {
+  font-family: "Arsenal", sans-serif;
   --white: #ffffff;
-  --primary: #F9C307;
+  --primary: #f9c307;
   --secondary: #fbdb6b;
   --tertiary: #46515e;
   --dark: #303841;

@@ -89,7 +89,7 @@ const Map = () => {
         closestDistance=dist
       }
     });
-    console.log(closestID)
+    console.log(restaurants[closestID])
   }, [pos]);
 
   return isLoaded ? (
@@ -102,7 +102,7 @@ const Map = () => {
         options={OPTIONS}
       >
         {restaurants?.map((r, pid) => (
-          <MarkerF position={r.pos} onClick={() => handleActiveMarker(pid)}>
+          <MarkerF key={pid} position={r.pos} onClick={() => handleActiveMarker(pid)}>
             {activeMarker === pid ? <InfoWindowCustom restaurant={r} /> : null}
           </MarkerF>
         ))}

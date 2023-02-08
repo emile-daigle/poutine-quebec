@@ -21,24 +21,28 @@ export const addRestaurant = async () => {
 
 export const getAllRestaurants = async () => {
   try {
-    const querySnapshot = await getDocs(db.restaurants);
-    let restaurants: IRestaurant[] = [];
-    querySnapshot.forEach((doc) => {
-      restaurants.push(doc.data());
+    const userDoc = await getDocs(db.restaurants);
+    console.log(userDoc.docs);
+    let Restaurants: IRestaurant[] = [];
+    userDoc.forEach((doc) => {
+      Restaurants.push({ ...doc.data(), uid: doc.id });
     });
-    return restaurants;
+    console.log(Restaurants);
+    return Restaurants;
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 };
 
-export const getRestaurantById = async (id: string) => {
+export const getRestaurantById = async () => {
   try {
-    const docRef = doc(db.restaurants, id);
-    const restaurant = await getDoc(docRef);
+    const docRef = doc(db.restaurants, "TEST");
+    const docSnap = await getDoc(docRef);
+    if (!docSnap.exists()) return undefined;
+    const restaurant: IRestaurant = { ...docSnap.data(), uid: docSnap.id };
     return restaurant;
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 };
 
@@ -46,19 +50,9 @@ export const getRestaurantByName = async (name: string) => {
   try {
     const q = query(db.restaurants, where("name", "==", name), limit(1));
     const querySnapshot = await getDocs(q);
-    console.log(querySnapshot.docs[0].data());
-    return querySnapshot.docs[0];
+    if (querySnapshot.empty) return undefined;
+    return querySnapshot.docs[0].data();
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
-};
-
-export const editRestaurant = async (id: string) => {
-  try {
-  } catch (error) {}
-};
-
-export const deleteRestaurant = async (id: string) => {
-  try {
-  } catch (error) {}
 };
