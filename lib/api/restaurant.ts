@@ -26,6 +26,6 @@ export const getRestaurantByName = async (name : string) => {
     limit(1)
   );
   const querySnapshot = await getDocs(q);
-  console.log(querySnapshot.docs[0].data() )
+  console.log(querySnapshot.docs[0].data())
   return querySnapshot.docs[0] 
 };

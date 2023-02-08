@@ -1,3 +1,4 @@
+
 import { async } from "@firebase/util";
 import React, { useState } from "react";
 import {
@@ -6,22 +7,21 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-  import {
-    collection,
-    addDoc,
-    updateDoc,
-    getDocs,
-    getDoc,
-    doc,
-    query,
-    where,
-    orderBy,
-    limit,
-    deleteDoc,
-    setDoc,
-  } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  updateDoc,
+  getDocs,
+  getDoc,
+  doc,
+  query,
+  where,
+  orderBy,
+  limit,
+  deleteDoc,
+  setDoc,
+} from "firebase/firestore";
 import { auth, database } from "@/lib/firebase"
-
 import FormAjoutRestaurant from '@/components/layout/FormAjoutRestaurant';
 
 const SignIn = () => {
@@ -29,6 +29,7 @@ const SignIn = () => {
   const userCollection = collection(database, "Users");
   const [resgisterEmail, setRegisterEmail] = useState("");
   const [resgisterPassword, setRegisterPassword] = useState("");
+  const [useruid, setuseruid] = useState("")
 
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
@@ -46,18 +47,24 @@ const SignIn = () => {
 
   const getUser = async () => {
     if (!auth.currentUser) return;
-    const docRef = doc(database, "User", auth.currentUser?.uid);
+    const docRef = doc(database, "Users", auth.currentUser?.uid);
     const docSnap = await getDoc(docRef);
     setData((data) => {
       return `${docSnap.id} => ${JSON.stringify(docSnap.data())} \n`;
     });
-    if(docSnap.data()!.admin == true)
-    {
+    if (docSnap.exists()) {
+      if (docSnap.data()!.admin == true) {
         setShowAdmin(true);
+        console.log(docSnap.data()!.admin)
+      }
+      else setShowAdmin(false);
+      console.log(docSnap.data()!.admin)
+      console.log(showAdmin)
     }
-    else setShowAdmin(false);
-    console.log(docSnap.data()!.admin)
-    console.log(showAdmin)
+    else {
+      console.log("Document does not exist")
+    }
+
   };
 
   const register = async () => {
@@ -67,22 +74,22 @@ const SignIn = () => {
         resgisterEmail,
         resgisterPassword
 
-        );
-        addUser();
- } catch (error) {
+      );
+      addUser();
+    } catch (error) {
 
-}
-  
-};
-const login = async () => {
-        const user =  await signInWithEmailAndPassword(
-            auth,
-            loginEmail,
-            loginPassword
-            );  
-        getUser()
-};
-const logout = async () => {
+    }
+
+  };
+  const login = async () => {
+    const user = await signInWithEmailAndPassword(
+      auth,
+      loginEmail,
+      loginPassword
+    );
+    getUser()
+  };
+  const logout = async () => {
     await signOut(auth);
   };
 
@@ -126,13 +133,13 @@ const logout = async () => {
       </div>
 
 
-        <div>
-            <h4>User logged In: {auth.currentUser?.email}</h4>
-            <button onClick={logout}>Sign out</button>
-        </div>
-        {showAdmin ? <h3>Admin page</h3> : null}
+      <div>
+        <h4>User logged In: {auth.currentUser?.email}</h4>
+        <button onClick={logout}>Sign out</button>
+      </div>
+      {showAdmin ? <h3>Admin page</h3> : null}
 
-        <FormAjoutRestaurant></FormAjoutRestaurant>
+      <FormAjoutRestaurant></FormAjoutRestaurant>
     </div>
   );
 };
