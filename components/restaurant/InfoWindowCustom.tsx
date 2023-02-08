@@ -2,6 +2,7 @@ import { IRestaurantInfo } from "@/interfaces/IRestaurant";
 import { InfoWindowF } from "@react-google-maps/api";
 import StarRating from "./StarRating";
 import React from "react";
+import Link from "next/link";
 
 interface Props {
   restaurant: IRestaurantInfo;
@@ -18,7 +19,7 @@ const InfoWindowCustom = ({ restaurant }: Props) => {
         </p>
         <div className="info-window__bottom">
           <StarRating rating={2} />
-          <button>Détails</button>
+          <Link href={`Fifteen is ${restaurant}.`}>Détails</Link>
         </div>
       </div>
     </InfoWindowF>
