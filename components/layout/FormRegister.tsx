@@ -8,12 +8,14 @@ import {
     doc,
     setDoc,
   } from "firebase/firestore";
+import Link from "next/link";
 
 function FormRegister() {
     const userCollection = collection(database, "Users");
     const router = useRouter()
     const [showAdmin, setShowAdmin] = useState(false);
     const [registerEmail, setRegisterEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
     const [registerPasswordConfirm, setregisterPasswordConfirm] = useState("");
     const [formerror, setFormError] = useState("")
@@ -36,6 +38,7 @@ function FormRegister() {
         const docSet = await setDoc(docRef, {
           uid: auth.currentUser?.uid,
           admin: false,
+          username:username,
         });
       };
 
@@ -45,6 +48,11 @@ function FormRegister() {
         if(!registerEmail.trim())
         {
             setFormError("L'adresse courriel ne peut pas être vide")
+            return 
+        }
+        if(!username.trim())
+        {
+            setFormError("Le nom d'utilisateur ne peut pas être vide")
             return 
         }
         if(!registerPassword.trim())
@@ -73,10 +81,24 @@ function FormRegister() {
         router.push("/")
     };
     return (
-        <div className="form-login-container">      
+        <div className="form-login-container"> 
+        <div className="form-login-div-logo">
+            <a href="/">
+            <img className="form-login-fleche" src="/img/fleche.png"></img>
+            </a>
+            <img className="form-login-logo" src="/img/PoutineLogo.png"></img>
+        </div>
         <form className="form-login" onSubmit={(event) => handleSubmit(event)}>
+        <div>
+        <h1>Création de compte</h1>
+        <p>Vous avez un compte? <Link href={"/signup"}>Connexion</Link></p>
+        </div>
         <p>{formerror}</p>
-            <div>
+                <div>
+                    <label>Nom d'utilisateur</label>
+                    <input required name="Username" onChange={e => setUsername(e.target.value)}></input>
+                </div>
+                <div>
                     <label>Adresse courriel</label>
                     <input required name="Email" onChange={e => setRegisterEmail(e.target.value)}></input>
                 </div>
