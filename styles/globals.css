@@ -20,6 +20,33 @@
   --dark: #303841;
 }
 
+h1 {
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+h3 {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000fff;
+}
+
 .info-window {
   display: flex;
   flex-direction: column;
@@ -59,4 +86,14 @@
 
 .star-rating .off {
   color: lightgray;
+}
+
+.restaurants-container {
+  flex-direction: column;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.restaurant-item {
+  border-bottom: 1px solid var(--dark);
 }

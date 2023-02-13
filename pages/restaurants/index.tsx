@@ -155,12 +155,16 @@ const Restaurants = () => {
           <button type="submit">Rechercher</button>
         </form>
       </div>
-      <ul>
+      <div className="restaurants-container">
         {restaurants.map((restaurant) => (
-          <li key={restaurant.id}>{restaurant.name}</li>
+          <div key={restaurant.id} className="restaurant-item">
+            <div>
+              <h4>{restaurant.name}</h4>
+            </div>
+            <p></p>
+          </div>
         ))}
-      </ul>
-      <p style={{ whiteSpace: "pre-line" }}>{data}</p>
+      </div>
     </>
   );
 };
