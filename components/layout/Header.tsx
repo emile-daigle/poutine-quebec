@@ -1,4 +1,6 @@
-import React from "react";
+
+import React, { Children } from "react";
+import BurgerMenu from './burgeMenu';
 
 function Header() {
   return (
@@ -9,11 +11,7 @@ function Header() {
               <img src="/img/PoutineLogo.png" alt="poutLogo" id="poutLogo"/>
             </div>
             <div className="burgerNAV">
-              <img
-                src="/img/burge.jpg" 
-                alt="burger" 
-                id="burgMenu"
-              />
+              <BurgerMenu />
             </div>
             <div className="col-1"></div>
             <div className="barreNav">
@@ -34,3 +32,4 @@ function Header() {
 }
 
 export default Header;
+

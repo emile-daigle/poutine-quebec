@@ -206,7 +206,12 @@ body {
 
 .burgerNAV {
   float: left;
-  margin-top: -1em;
+  margin-top: -0.3em;
+  margin-left: 3.5em;
+}
+
+.menu-bars {
+  font-size: 2.5em;
 }
 
 #burgMenu {

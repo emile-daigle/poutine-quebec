@@ -1,6 +1,7 @@
 import { getUserById } from "@/lib/api/users";
 import { auth, database } from "@/lib/firebase"
 import { signInWithEmailAndPassword } from "firebase/auth";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
@@ -39,9 +40,19 @@ function Formlogin() {
         getUser()
         router.push("/")
     };
-    return (
-        <div className="form-login-container">
+    return (   
+        <div className="form-login-container"> 
+        <div className="form-login-div-logo">
+            <a href="/">
+            <img className="form-login-fleche" src="/img/fleche.png"></img>
+            </a>
+            <img className="form-login-logo" src="/img/PoutineLogo.png"></img>
+        </div>
             <form className="form-login" onSubmit={(event) => handleSubmit(event)}>
+            <div>
+            <h1>Connexion</h1>
+            <p>Aucun compte? <Link href={"/signup"}>Création de compte</Link><br></br>Cela prend moins d'une minute</p>
+            </div>
                 <div>
                     <label>Adresse courriel</label>
                     <input name="Email" onChange={e => setLoginEmail(e.target.value)}></input>
@@ -49,9 +60,7 @@ function Formlogin() {
                 <div>
                     <label>Mot de passe</label>
                     <input type={"password"} name="password" onChange={e => setLoginPassword(e.target.value)}></input>
-                    <p>Mot de passe oublié?</p>
                 </div>
-                
                 <button type="submit">Se connecter</button>
             </form>
         </div>
