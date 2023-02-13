@@ -24,8 +24,13 @@ function Header() {
             </div>
             <div className="col-2"></div>
             <div className="barreSigning">
+              <a href="/signin">
                 <button className="boutC">Connexion</button>
+              </a>
+              <a href="/signup">
                 <button className="inscripBout">Inscription</button>
+              </a>
+                
             </div>
         </div>
     </header>
