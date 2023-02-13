@@ -3,7 +3,7 @@ import IRestaurant from "@/interfaces/IRestaurant";
 import { getAllRestaurants } from "@/lib/api/restaurant";
 import { database } from "@/lib/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid, icon } from "@fortawesome/fontawesome-svg-core/import.macro";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { set } from "firebase/database";
 import {
   collection,
@@ -19,6 +19,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
+import StarRating from "@/components/restaurant/StarRating";
 
 const Restaurants = () => {
   const restaurantCollection = collection(database, "Restaurants");
@@ -133,7 +134,7 @@ const Restaurants = () => {
     });
   };
   return (
-    <>
+    <div>
       <div>
         <button onClick={addRestaurant}>Ajouter un restaurant</button>
         <button onClick={getRestaurants}>Get all restaurants</button>
@@ -145,30 +146,34 @@ const Restaurants = () => {
           Get one restaurant by name
         </button>
         <button onClick={deleteRestaurant}>Supprimer Restaurant</button>
-      </div>
-      <div>
-        <form onSubmit={(event) => handleSubmit(event)}>
-          <input
-            type="text"
-            value={recherche}
-            onChange={(e) => setRecherche(e.target.value)}
-            placeholder="Nom"
-          />
-          <button type="submit">Rechercher</button>
-        </form>
+        <div>
+          <form onSubmit={(event) => handleSubmit(event)}>
+            <input
+              type="text"
+              value={recherche}
+              onChange={(e) => setRecherche(e.target.value)}
+              placeholder="Nom"
+            />
+            <button type="submit">Rechercher</button>
+          </form>
+        </div>
       </div>
       <div className="restaurants-container">
         {restaurants.map((restaurant) => (
           <div key={restaurant.id} className="restaurant-item">
             <div>
-              <h4>{restaurant.name}</h4>
+              <div className="restaurant-name-star">
+                <h4>{restaurant.name}</h4>
+                {/* Il reste à aller chercher le rating de chaque restaurant */}
+                <StarRating rating={2} />
+              </div>
+              <p>{restaurant.region}</p>
             </div>
-            <p></p>
-            <FontAwesomeIcon icon={solid("chevron-right")} />
+            <FontAwesomeIcon icon={faChevronRight} className="chevron-right" />
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

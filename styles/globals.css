@@ -42,9 +42,7 @@ h4 {
 
 .center {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #000fff;
+  flex-direction: column;
 }
 
 .info-window {
@@ -81,7 +79,7 @@ h4 {
 }
 
 .star-rating .on {
-  color: orange;
+  color: var(--primary);
 }
 
 .star-rating .off {
@@ -92,8 +90,32 @@ h4 {
   flex-direction: column;
   margin-left: 1.5rem;
   margin-right: 1.5rem;
+  max-width: 650px;
 }
 
 .restaurant-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
   border-bottom: 1px solid var(--dark);
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.restaurant-name-star {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.chevron-right {
+  color: var(--dark);
+  font-size: 24px;
+}
+
+.chevron-right:hover {
+  color: var(--tertiary);
+  cursor: pointer;
 }
