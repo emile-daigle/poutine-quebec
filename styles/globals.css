@@ -64,7 +64,7 @@
 .form-login-container {
   display: grid;
   place-items: center;
-  min-height: 70vh;
+  min-height: 100vh;
 }
 .form-login {
   display: flex;
@@ -77,7 +77,7 @@
 }
 
 .form-login-container * {
-  /*outline-color: #f9c307;
+ /* outline-color: #f9c307;
   outline-width: 2px;
   outline-style: solid;*/
 }
@@ -112,39 +112,11 @@
    background-color: var(--secondary);
  }
 
- .form-login-container p {
-  text-align: left;
+ .form-login p {
+  text-align: right;
   padding-top: 6px;
   font-size: 0.8em;
  }
- .form-login-container>div {
-    text-align: left;
-    width: 100%;
-    margin-left: 2em;
-   }
-   .form-login-logo{
-    width: 10em;
-    height: 2.5em;
-    margin-right: 25px;
-    
-   }
-   .form-login-fleche{
-    width: 4em;
-    transform: rotate(180deg);
-   }
-   .form-login-div-logo{
-    display: flex;
-    margin-right: 2em;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 50px;
-   }
- .form-login-container h1 {
-    text-align: left;
-    width: 100%;
-    font-size: 2.5rem;
-    margin-top: 10px;
-   }
  .form-login>p {
   font-size: 1em;
   color: red;
@@ -194,11 +166,16 @@ body{
 
 .burgerNAV {
     float: left;
-    margin-top: -1em;
+    margin-top: -0.3em;
+    margin-left :3.5em;
 }
 
-#burgMenu{
-    width: 3em;
+.menu-bars{
+    font-size: 2.5em;
+}
+
+#burgMenu:hover{
+    background-color: black;
 }
 
 .Logo{
@@ -302,7 +279,7 @@ body{
     margin-top: 1em;
 }
 
-h2{
+.acch2{
     font-family: 'Roboto Bold 700', sans-serif;
     font-size: 40px;
     margin-bottom: 10px;
@@ -310,7 +287,7 @@ h2{
 
 /*========== Texte et bouton évaluation ===========*/
 
-h3{
+.acch3{
     font-family: 'Roboto Bold 700', sans-serif;
     font-size: 26px;
     margin-top: 3em;
@@ -374,7 +351,7 @@ h3{
 
 @media only screen and (max-width: 600px) {
     .col-1{
-        width: 100%;
+        width: 60%;
     }
     .col-2{
         width: 0%;
@@ -383,7 +360,7 @@ h3{
 
 @media only screen and (min-width: 600px) {
     .col-1{
-        width: 100%;
+        width: 60%;
     }
     .col-2{
         width: 0%;
@@ -428,6 +405,9 @@ h3{
     .Logo{
         width: 200px
     }
+    .boutonFleche{
+        margin-top: 7em;
+    }
 }
 
 @media only screen and (min-width: 1200px) {
@@ -439,6 +419,9 @@ h3{
     }
     .barreSigning{
         width: 250px;
+    }
+    .boutonFleche{
+        margin-top: 7em;
     }
 }
 
@@ -567,5 +550,4 @@ h3{
         height: 900px;
     }
 } 
-
 
