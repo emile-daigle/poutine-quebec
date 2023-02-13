@@ -166,17 +166,16 @@ body{
 
 .burgerNAV {
     float: left;
-    margin-top: -1em;
-    margin-left : 3em;
+    margin-top: -0.3em;
+    margin-left :3.5em;
 }
 
-#burgMenu{
-    width: 3em;
-    color: black;
+.menu-bars{
+    font-size: 2.5em;
 }
 
 #burgMenu:hover{
-    background-color: blue;
+    background-color: black;
 }
 
 .Logo{
@@ -280,7 +279,7 @@ body{
     margin-top: 1em;
 }
 
-h2{
+.acch2{
     font-family: 'Roboto Bold 700', sans-serif;
     font-size: 40px;
     margin-bottom: 10px;
@@ -288,7 +287,7 @@ h2{
 
 /*========== Texte et bouton évaluation ===========*/
 
-h3{
+.acch3{
     font-family: 'Roboto Bold 700', sans-serif;
     font-size: 26px;
     margin-top: 3em;
@@ -406,6 +405,9 @@ h3{
     .Logo{
         width: 200px
     }
+    .boutonFleche{
+        margin-top: 7em;
+    }
 }
 
 @media only screen and (min-width: 1200px) {
@@ -417,6 +419,9 @@ h3{
     }
     .barreSigning{
         width: 250px;
+    }
+    .boutonFleche{
+        margin-top: 7em;
     }
 }
 

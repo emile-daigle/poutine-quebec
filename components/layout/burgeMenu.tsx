@@ -1,13 +1,22 @@
-import React, { Children } from 'react';
+import React, { Children, MouseEvent } from 'react';
+import * as FaIcons from "react-icons/fa"
+
 
 function BurgerMenu() {
     return (
-        <img
-            src="/img/burgeFix.jpg" 
-            alt="burger" 
-            id="burgMenu"
-        />
-    );
+        <>
+            <div className="burgMenu">
+                <a href="#" className="menu-bars">
+                    <FaIcons.FaBars/>
+                </a>
+            </div>
+            <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+                <ul>
+
+                </ul>
+            </nav>
+        </>
+    )
 }
 
 export default BurgerMenu;
