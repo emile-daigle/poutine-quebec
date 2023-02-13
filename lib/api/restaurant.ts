@@ -34,9 +34,9 @@ export const getAllRestaurants = async () => {
   }
 };
 
-export const getRestaurantById = async () => {
+export const getRestaurantById = async (id: string) => {
   try {
-    const docRef = doc(db.restaurants, "TEST");
+    const docRef = doc(db.restaurants, id);
     const docSnap = await getDoc(docRef);
     if (!docSnap.exists()) return undefined;
     const restaurant: IRestaurant = { ...docSnap.data(), uid: docSnap.id };

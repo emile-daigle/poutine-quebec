@@ -10,7 +10,7 @@ interface Props {
 
 const InfoWindowCustom = ({ restaurant }: Props) => {
   return (
-    <InfoWindowF position={restaurant.pos}>
+    <InfoWindowF position={restaurant.pos} options={{minWidth: 300}}>
       <div className="info-window">
         <h2>{restaurant.name}</h2>
         <p>
@@ -19,7 +19,7 @@ const InfoWindowCustom = ({ restaurant }: Props) => {
         </p>
         <div className="info-window__bottom">
           <StarRating rating={2} />
-          <Link href={`Fifteen is ${restaurant}.`}>Détails</Link>
+          <Link href={`/restaurants/${restaurant.uid}`}>Détails</Link>
         </div>
       </div>
     </InfoWindowF>
