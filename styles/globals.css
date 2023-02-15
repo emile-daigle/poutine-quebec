@@ -26,6 +26,31 @@ body {
   --dark: #303841;
 }
 
+h1 {
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+h3 {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+}
+
 .info-window {
   display: flex;
   flex-direction: column;
@@ -117,11 +142,45 @@ body {
 }
 
 .star-rating .on {
-  color: orange;
+  color: var(--primary);
 }
 
 .star-rating .off {
   color: lightgray;
+}
+
+.restaurants-container {
+  flex-direction: column;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  max-width: 650px;
+}
+
+.restaurant-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  border-bottom: 1px solid var(--dark);
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.restaurant-name-star {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.chevron-right {
+  color: var(--dark);
+  font-size: 24px;
+}
+
+.chevron-right:hover {
+  color: var(--tertiary);
+  cursor: pointer;
 }
 
 .form-login-container {
