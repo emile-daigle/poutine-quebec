@@ -2,8 +2,7 @@ import RestaurantList from "@/components/restaurant/RestaurantList";
 import IRestaurant from "@/interfaces/IRestaurant";
 import { getAllRestaurants } from "@/lib/api/restaurant";
 import { database } from "@/lib/firebase";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { FaChevronRight } from "react-icons/fa";
 import { set } from "firebase/database";
 import {
   collection,
@@ -169,7 +168,7 @@ const Restaurants = () => {
               </div>
               <p>{restaurant.region}</p>
             </div>
-            <FontAwesomeIcon icon={faChevronRight} className="chevron-right" />
+            <FaChevronRight className="chevron-right" />
           </div>
         ))}
       </div>
