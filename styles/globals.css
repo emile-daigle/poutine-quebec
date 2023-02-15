@@ -10,6 +10,11 @@
   background: transparent;
   box-sizing: border-box;
 }
+body {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  font-family: "Roboto Regular 400", sans-serif;
+}
 
 :root {
   font-family: "Arsenal", sans-serif;
@@ -49,7 +54,7 @@ h4 {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  width: 290px;
+  max-width: 90vw;
 }
 
 .info-window h2 {
@@ -62,16 +67,63 @@ h4 {
   justify-content: space-between;
 }
 
-.info-window button {
+.info-window__bottom a {
   cursor: pointer;
   color: var(--primary);
   padding: 0.5em 1em;
   border: 2px solid currentColor;
+  text-decoration: none;
 }
 
-.info-window button:hover {
+.info-window__bottom a:hover {
   color: white;
   background-color: var(--primary);
+}
+
+.restaurant-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  padding: 1em;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.restaurant-container > .star-rating {
+  font-size: 30px;
+}
+
+.ratings-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.rating-card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: left;
+  padding: 1.5em 1em;
+  border-radius: 15px;
+  box-shadow: 2px 6px 16px 2px rgba(56, 125, 255, 0.2);
+}
+
+.rating-top {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.rating-top * {
+  height: 100%;
+}
+
+.rating-top p {
+  font-weight: 700;
+  font-size: 1.5em;
 }
 
 .star-rating {
@@ -118,4 +170,466 @@ h4 {
 .chevron-right:hover {
   color: var(--tertiary);
   cursor: pointer;
+=======
+.form-login-container {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
+.form-login {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  width: 85%;
+  max-width: 450px;
+}
+
+.form-login-container * {
+  /* outline-color: #f9c307;
+  outline-width: 2px;
+  outline-style: solid;*/
+}
+.form-login input {
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 2px;
+  padding: 0.3em 0.4em; /*pading Vertical (top bottom), pading Vertical (left right)*/
+}
+.form-login label {
+  padding-bottom: 4px; /*pading Vertical (top bottom), pading Vertical (left right)*/
+  display: inline-block;
+}
+.form-login-oublier {
+  width: 50px;
+}
+.form-login div {
+  width: 100%;
+
+  /*pading Vertical (top bottom), pading Vertical (left right)*/
+}
+
+.form-login button {
+  background-color: var(--primary);
+  border-radius: 5px;
+  width: 100%;
+  padding: 0.6em;
+  color: var(--dark);
+  font-weight: 600;
+}
+.form-login button:hover {
+  background-color: var(--secondary);
+}
+
+.form-login p {
+  text-align: right;
+  padding-top: 6px;
+  font-size: 0.8em;
+}
+.form-login > p {
+  font-size: 1em;
+  color: red;
+  font-weight: 600;
+}
+.form-login input:invalid {
+  border-color: red;
+}
+
+/* ======================================*/
+/*=============== header ================*/
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+/*======== Tout ========*/
+
+.contenu {
+  display: flex;
+  flex-direction: column;
+}
+
+/*========= En-tête ==========*/
+
+.barreHoriz {
+  display: flex;
+  flex-direction: row;
+}
+
+.milieu {
+  width: 0%;
+  float: left;
+}
+
+/*============ header pt1 - Logo et burger =============*/
+
+.burgerNAV {
+  float: left;
+  margin-top: -0.3em;
+  margin-left: 3.5em;
+}
+
+.menu-bars {
+  font-size: 2.5em;
+}
+
+#burgMenu {
+  width: 3em;
+}
+
+.Logo {
+  width: 10%;
+  float: left;
+  margin-top: -1em;
+}
+
+#poutLogo {
+  width: 15em;
+}
+
+/*============ header pt2 - barre de navigation =============*/
+
+.barreNav {
+  display: flex;
+  flex-direction: row;
+  margin-top: -1em;
+}
+
+#accueilB {
+  width: 70px;
+}
+
+#carteB {
+  width: 160px;
+}
+
+#listeB {
+  width: 150px;
+}
+
+#aProposB {
+  width: 70px;
+}
+
+/*============ header pt3 - barre de connexion =============*/
+
+.barreSigning {
+  width: 420px;
+  float: right;
+}
+
+.bout {
+  background: none;
+  border: none;
+  color: #303841;
+  font-family: "Roboto Regular 400", sans-serif;
+  size: 14px;
+  margin: 5px;
+}
+
+.boutC {
+  background: none;
+  border: none;
+  color: #303841;
+  font-family: "Roboto Regular 400", sans-serif;
+  size: 14px;
+  margin-right: 10px;
+}
+
+.bout:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
+.boutC:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
+.inscripBout {
+  background-color: #f9c307;
+  color: #303841;
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  width: 110px;
+  font-family: "Roboto Bold 700", sans-serif;
+  size: 14px;
+}
+
+.inscripBout:hover {
+  background-color: #fbdb6b;
+}
+
+/*============ Texte au centre ==============*/
+
+.milieuDePage {
+  display: flex;
+  flex-direction: column;
+  width: 110%;
+  float: left;
+}
+
+.centerText {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1em;
+  margin-top: 1em;
+}
+
+h2 {
+  font-family: "Roboto Bold 700", sans-serif;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+/*========== Texte et bouton évaluation ===========*/
+
+h3 {
+  font-family: "Roboto Bold 700", sans-serif;
+  font-size: 26px;
+  margin-top: 3em;
+}
+
+.boutPoutEval {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 1em;
+  margin-top: -10px;
+}
+
+.boutonFleche {
+  background-color: #f9c307;
+  color: #303841;
+  border: none;
+  border-radius: 5px;
+  width: 55px;
+  height: 50px;
+  margin-top: 4.5em;
+  margin-left: 3em;
+}
+
+.boutonFleche:hover {
+  background-color: #fbdb6b;
+}
+
+#imgFleche {
+  width: 90%;
+}
+
+/*========== Bas de page ===========*/
+
+.basDePage {
+  margin-top: 0em;
+  width: 100%;
+  float: right;
+}
+
+#poutImg {
+  width: 600px;
+  height: 300px;
+  margin-top: 70px;
+  margin-left: -50px;
+}
+
+#circle {
+  background: #fbdb6b;
+  border-radius: 50%;
+  width: 500px;
+  height: 450px;
+  margin-left: 140px;
+}
+
+/*=========== responsiveness header ============*/
+
+@media only screen and (max-width: 600px) {
+  .col-1 {
+    width: 100%;
+  }
+  .col-2 {
+    width: 0%;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .col-1 {
+    width: 100%;
+  }
+  .col-2 {
+    width: 0%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .col-1 {
+    width: 250px;
+  }
+  .col-2 {
+    width: 250px;
+  }
+  .barreSigning {
+    width: 200px;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .Logo {
+    display: none;
+  }
+  .barreNav {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .col-1 {
+    width: 60px;
+  }
+  .col-2 {
+    width: 20px;
+  }
+  .burgerNAV {
+    display: none;
+  }
+  .barreSigning {
+    width: 200px;
+  }
+  .Logo {
+    width: 200px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .col-1 {
+    width: 175px;
+  }
+  .col-2 {
+    width: 175px;
+  }
+  .barreSigning {
+    width: 250px;
+  }
+}
+
+/*=========== responsiveness ============*/
+
+@media only screen and (max-width: 600px) {
+  h2 {
+    font-size: 40px;
+  }
+  #poutImg {
+    transform: translate(-30px, -10px);
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  h2 {
+    font-size: 40px;
+  }
+  #poutImg {
+    margin-left: 500;
+    transform: translate(-30px, -10px);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  h2 {
+    font-size: 50px;
+  }
+  p {
+    font-size: 20px;
+  }
+
+  .milieuDePage {
+    transform: translate(100px, 0);
+  }
+
+  .basDePage {
+    position: relative;
+    width: 100%;
+    float: right;
+  }
+  #poutImg {
+    margin-left: 500;
+    transform: translate(-10px, -30px);
+  }
+  #circle {
+    margin-left: 500;
+    transform: translate(300px, 0px);
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  h2 {
+    font-size: 60px;
+  }
+  h3 {
+    font-size: 40px;
+  }
+  p {
+    font-size: 24px;
+  }
+
+  .milieuDePage {
+    transform: translate(200px, 0);
+  }
+
+  .basDePage {
+    position: relative;
+    width: 100%;
+    float: right;
+  }
+  #poutImg {
+    transform: translate(0px, 0px);
+  }
+  #circle {
+    transform: translate(500px, -200px);
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  h2 {
+    font-size: 60px;
+  }
+  .milieuDePage {
+    margin-left: 10em;
+  }
+
+  .basDePage {
+    position: relative;
+    width: 100%;
+    float: right;
+  }
+  #poutImg {
+    margin-left: 500;
+    transform: translate(-50px, -10px);
+    width: 900px;
+    height: 500px;
+  }
+  #circle {
+    margin-left: 500;
+    transform: translate(800px, -300px);
+    width: 700px;
+    height: 700px;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .basDePage {
+    position: relative;
+    width: 100%;
+    float: right;
+  }
+  #poutImg {
+    margin-left: 500;
+    transform: translate(-20px, 30px);
+    width: 1100px;
+    height: 600px;
+  }
+  #circle {
+    margin-left: 500;
+    transform: translate(1100px, -300px);
+    width: 1000px;
+    height: 900px;
+  }
 }
