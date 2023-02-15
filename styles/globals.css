@@ -406,9 +406,7 @@ body{
     .Logo{
         width: 200px
     }
-    .boutonFleche{
-        margin-top: 7em;
-    }
+    
 }
 
 @media only screen and (min-width: 1200px) {
@@ -421,9 +419,7 @@ body{
     .barreSigning{
         width: 250px;
     }
-    .boutonFleche{
-        margin-top: 7em;
-    }
+    
 }
 
 /*=========== responsiveness ============*/
@@ -502,6 +498,9 @@ body{
     #circle{
         transform: translate(500px, -200px);
     }
+    .boutonFleche{
+        margin-top: 4.5em;
+    }
 }
 
 @media only screen and (min-width: 1200px) {
@@ -529,6 +528,9 @@ body{
         width: 700px;
         height: 700px;
     }
+    .boutonFleche{
+        margin-top: 5em;
+    }
 
 }
 
@@ -549,5 +551,8 @@ body{
         transform: translate(1100px, -300px);
         width: 1000px;
         height: 900px;
+    }
+    .boutonFleche{
+        margin-top: 5em;
     }
 } 
