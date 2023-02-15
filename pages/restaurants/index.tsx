@@ -1,7 +1,10 @@
 import RestaurantList from "@/components/restaurant/RestaurantList";
 import IRestaurant from "@/interfaces/IRestaurant";
-import { getRestaurantByName } from "@/lib/api/restaurant";
+import { getAllRestaurants } from "@/lib/api/restaurant";
 import { database } from "@/lib/firebase";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { set } from "firebase/database";
 import {
   collection,
   addDoc,
@@ -16,18 +19,18 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
+import StarRating from "@/components/restaurant/StarRating";
 
 const Restaurants = () => {
   const restaurantCollection = collection(database, "Restaurants");
-  const [restaurant, setRestaurant] = useState<IRestaurant>();
+  const [restaurants, setRestaurants] = useState<IRestaurant[]>([]);
   const [data, setData] = useState<string>("");
   const [recherche, setRecherche] = useState<string>("");
 
   useEffect(() => {
-   const test = async () => {
-    await getRestaurantByName("Ti-Gus");
-   }
-   test()
+    getAllRestaurants().then((result) => {
+      setRestaurants(result || []);
+    });
   }, []);
 
   const addRestaurant = async () => {
@@ -64,7 +67,7 @@ const Restaurants = () => {
       console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
     });
   };
-  
+
   const getRestaurant = async () => {
     const docRef = doc(database, "Restaurants", "ducDJE5bCm8NJ4O2HCnz");
     const docSnap = await getDoc(docRef);
@@ -131,7 +134,7 @@ const Restaurants = () => {
     });
   };
   return (
-    <>
+    <div>
       <div>
         <button onClick={addRestaurant}>Ajouter un restaurant</button>
         <button onClick={getRestaurants}>Get all restaurants</button>
@@ -143,21 +146,34 @@ const Restaurants = () => {
           Get one restaurant by name
         </button>
         <button onClick={deleteRestaurant}>Supprimer Restaurant</button>
+        <div>
+          <form onSubmit={(event) => handleSubmit(event)}>
+            <input
+              type="text"
+              value={recherche}
+              onChange={(e) => setRecherche(e.target.value)}
+              placeholder="Nom"
+            />
+            <button type="submit">Rechercher</button>
+          </form>
+        </div>
       </div>
-      <div>
-        <form onSubmit={(event) => handleSubmit(event)}>
-          <input
-            type="text"
-            value={recherche}
-            onChange={(e) => setRecherche(e.target.value)}
-            placeholder="Nom"
-          />
-          <button type="submit">Rechercher</button>
-        </form>
+      <div className="restaurants-container">
+        {restaurants.map((restaurant) => (
+          <div key={restaurant.id} className="restaurant-item">
+            <div>
+              <div className="restaurant-name-star">
+                <h4>{restaurant.name}</h4>
+                {/* Il reste à aller chercher le rating de chaque restaurant */}
+                <StarRating rating={2} />
+              </div>
+              <p>{restaurant.region}</p>
+            </div>
+            <FontAwesomeIcon icon={faChevronRight} className="chevron-right" />
+          </div>
+        ))}
       </div>
-      {restaurant && <p>{restaurant.name}</p>}
-      <p style={{ whiteSpace: "pre-line" }}>{data}</p>
-    </>
+    </div>
   );
 };
 
