@@ -1,35 +1,78 @@
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import * as FaIcons from "react-icons/fa";
+import styles from "./header.module.css";
 
-import React, { Children } from "react";
-import BurgerMenu from './burgeMenu';
+const Header = () => {
+  const [click, setClick] = useState(false);
 
-function Header() {
+  const handleClick = () => setClick(!click);
+  const closeMobileMenu = () => setClick(false);
+
   return (
-  <div>
-    <header>
-        <div className="barreHoriz">
-            <div className="Logo">
-              <img src="/img/PoutineLogo.png" alt="poutLogo" id="poutLogo"/>
-            </div>
-            <div className="burgerNAV">
-              <BurgerMenu />
-            </div>
-            <div className="col-1"></div>
-            <div className="barreNav">
-                <button className="bout" id="accueilB">Accueil</button>
-                <button className="bout" id="carteB">Carte des restaurants</button>
-                <button className="bout" id="listeB">Liste des restaurants</button>
-                <button className="bout" id="aProposB">À propos</button>
-            </div>
-            <div className="col-2"></div>
-            <div className="barreSigning">
-                <button className="boutC">Connexion</button>
-                <button className="inscripBout">Inscription</button>
-            </div>
+    <>
+      <header className={styles.header}>
+        <Link href="" className={styles.logo}>
+          <img src="/img/PoutineLogo.png" alt="Logo" width={160} />
+        </Link>
+        <nav className={styles.nav}>
+          <div className={styles.nav__icon} onClick={handleClick}>
+            {click ? <FaIcons.FaTimes /> : <FaIcons.FaBars />}
+          </div>
+          <ul
+            className={
+              click ? [styles.navMenu, styles.active].join(" ") : styles.navMenu
+            }
+          >
+            <li>
+              <Link
+                href=""
+                className={styles.navMenu__link}
+                onClick={closeMobileMenu}
+              >
+                Accueil
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="map"
+                className={styles.navMenu__link}
+                onClick={closeMobileMenu}
+              >
+                Carte interractive
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="restaurants"
+                className={styles.navMenu__link}
+                onClick={closeMobileMenu}
+              >
+                Restaurants
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="products"
+                className={styles.navMenu__link}
+                onClick={closeMobileMenu}
+              >
+                Products
+              </Link>
+            </li>
+          </ul>
+        </nav>
+        <div className={styles.rightButtons}>
+          <Link href="" className={styles.signIn}>
+            Inscription
+          </Link>
+          <Link href="" className={styles.signUp}>
+            Connexion
+          </Link>
         </div>
-    </header>
-  </div>
+      </header>
+    </>
   );
-}
+};
 
 export default Header;
-

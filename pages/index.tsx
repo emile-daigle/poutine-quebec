@@ -1,9 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
-import Header from ".././components/layout/Header";
-import NavBar from "@/components/layout/HeaderTest";
-import HeaderNav from "@/components/layout/HeaderNav";
+import Header from "@/components/layout/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +20,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <HeaderNav />
+        <Header />
         <div className="milieuDePage">
           <div className="centerText">
             <h2 className="accH2">
