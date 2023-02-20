@@ -24,7 +24,7 @@ const Restaurant = () => {
     <div className="restaurant-container">
       <div className="restaurant-info">
         <h2>{restaurant.name}</h2>
-        <p>{restaurant.address}</p>
+        <p>{restaurant.region}</p>
       </div>
       <h3>Moyenne des poutines</h3>
       <StarRating rating={4} />
