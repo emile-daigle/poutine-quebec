@@ -24,15 +24,15 @@ const Restaurant = () => {
     <div className="restaurant-container">
       <div className="restaurant-info">
         <h2>{restaurant.name}</h2>
-        <p>{restaurant.region}</p>
+        <p>{restaurant.address}</p>
       </div>
       <h3>Moyenne des poutines</h3>
       <StarRating rating={4} />
       <h3>Évaluations</h3>
       <div className="ratings-container">
         {restaurant.reviews ? (
-          restaurant.reviews.map((review) => (
-            <div className="rating-card">
+          restaurant.reviews.map((review, idx) => (
+            <div key={idx} className="rating-card">
               <div className="rating-top">
                 <p>{review.userID}</p>
                 <StarRating rating={review.note} />

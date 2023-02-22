@@ -14,7 +14,7 @@ const InfoWindowCustom = ({ restaurant }: Props) => {
       <div className="info-window">
         <h2>{restaurant.name}</h2>
         <p>
-          {restaurant.region} Ceci est un restaurant avec une addresse lognue
+          {restaurant.address} Ceci est un restaurant avec une addresse lognue
           lol
         </p>
         <div className="info-window__bottom">
