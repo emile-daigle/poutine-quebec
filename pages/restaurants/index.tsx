@@ -166,7 +166,7 @@ const Restaurants = () => {
                 {/* Il reste à aller chercher le rating de chaque restaurant */}
                 <StarRating rating={2} />
               </div>
-              <p>{restaurant.region}</p>
+              <p>{restaurant.address}</p>
             </div>
             <FaChevronRight className="chevron-right" />
           </div>
