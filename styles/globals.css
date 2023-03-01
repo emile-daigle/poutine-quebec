@@ -1,4 +1,3 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Arsenal&display=swap");
 
 * {
@@ -11,6 +10,7 @@
   background: transparent;
   box-sizing: border-box;
 }
+
 body {
   overflow-y: scroll;
   overflow-x: hidden;
@@ -100,7 +100,7 @@ h4 {
   margin: 0 auto;
 }
 
-.restaurant-container > .star-rating {
+.restaurant-container>.star-rating {
   font-size: 30px;
 }
 
@@ -188,6 +188,7 @@ h4 {
   place-items: center;
   min-height: 100vh;
 }
+
 .form-login {
   display: flex;
   flex-direction: column;
@@ -199,32 +200,70 @@ h4 {
 }
 
 .form-login input {
-
- width: 100%;
- border: 1px solid black;
- border-radius: 2px;
- padding: 0.3em 0.4em; /*pading Vertical (top bottom), pading Vertical (left right)*/
-
   width: 100%;
   border: 1px solid black;
   border-radius: 2px;
-  padding: 0.3em 0.4em; /*pading Vertical (top bottom), pading Vertical (left right)*/
-
+  padding: 0.3em 0.4em;
+  /*pading Vertical (top bottom), pading Vertical (left right)*/
 }
-.form-login label {
-  padding-bottom: 4px; /*pading Vertical (top bottom), pading Vertical (left right)*/
-  display: inline-block;
 
- }
+.form-login label {
+  padding-bottom: 4px;
+  /*pading Vertical (top bottom), pading Vertical (left right)*/
+  display: inline-block;
+}
+
 .form-login-oublier {
   width: 50px;
 }
- .form-login div {
-  width: 100%;
-  
-   /*pading Vertical (top bottom), pading Vertical (left right)*/
- }
 
+.form-login div {
+  width: 100%;
+  /*pading Vertical (top bottom), pading Vertical (left right)*/
+}
+
+.form-login-container {
+  display: grid;
+  place-items: center;
+  min-height: 70vh;
+}
+
+.form-login {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  width: 85%;
+  max-width: 450px;
+}
+
+.form-login-container * {
+  /*outline-color: #f9c307;    outline-width: 2px;    outline-style: solid;*/
+}
+
+.form-login input {
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 2px;
+  padding: 0.3em 0.4em;
+  /*pading Vertical (top bottom), pading Vertical (left right)*/
+}
+
+.form-login label {
+  padding-bottom: 4px;
+  /*pading Vertical (top bottom), pading Vertical (left right)*/
+  display: inline-block;
+}
+
+.form-login-oublier {
+  width: 50px;
+}
+
+.form-login div {
+  width: 100%;
+  /*pading Vertical (top bottom), pading Vertical (left right)*/
+}
 
 .form-login button {
   background-color: var(--primary);
@@ -234,26 +273,58 @@ h4 {
   color: var(--dark);
   font-weight: 600;
 }
- 
- .form-login button:hover {
-   background-color: var(--secondary);
- }
 
- .form-login p {
-  text-align: right;
+.form-login button:hover {
+  background-color: var(--secondary);
+}
+
+.form-login-container p {
+  text-align: left;
   padding-top: 6px;
   font-size: 0.8em;
- }
- .form-login>p {
+}
+
+.form-login-container>div {
+  text-align: left;
+  width: 100%;
+  margin-left: 2em;
+}
+
+.form-login-logo {
+  width: 10em;
+  height: 2.5em;
+  margin-right: 25px;
+}
+
+.form-login-fleche {
+  width: 4em;
+  transform: rotate(180deg);
+}
+
+.form-login-div-logo {
+  display: flex;
+  margin-right: 2em;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.form-login-container h1 {
+  text-align: left;
+  width: 100%;
+  font-size: 2.5rem;
+  margin-top: 10px;
+}
+
+.form-login>p {
   font-size: 1em;
   color: red;
   font-weight: 600;
- }
- .form-login input:invalid {
+}
+
+.form-login input:invalid {
   border-color: red;
- }
-
-
+}
 
 /* ======================================*/
 /*=============== header ================*/
@@ -263,35 +334,36 @@ h4 {
 
 /*======== Tout ========*/
 
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
-body{
-    justify-content: center;
-    align-items: center;
-    font-family: 'Roboto Regular 400', sans-serif;
-    overflow: hidden;
+body {
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto Regular 400', sans-serif;
+  overflow: hidden;
 }
 
-.contenu{
-    display: flex;
-    flex-direction: column;
+.contenu {
+  display: flex;
+  flex-direction: column;
 }
+
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 
 /*========= En-tête ==========*/
 
-.barreHoriz{
-    display: flex;
-    flex-direction: row;
+.barreHoriz {
+  display: flex;
+  flex-direction: row;
 }
 
 
-.milieu{
-    width: 0%;
-    float: left;
+.milieu {
+  width: 0%;
+  float: left;
 }
 
 .navbar {
@@ -314,6 +386,7 @@ body{
   justify-content: center;
   align-items: center;
 }
+
 .nav-menu {
   display: flex;
   flex-direction: column;
@@ -379,9 +452,11 @@ body{
   .menu-icon {
     display: none;
   }
+
   .nav-container {
     height: 100%;
   }
+
   .nav-links {
     display: flex;
     align-items: center;
@@ -394,6 +469,7 @@ body{
     border-bottom: 4px solid #fff;
     transition: all 0.2s ease-out;
   }
+
   .nav-menu {
     height: 100%;
     position: sticky;
@@ -403,9 +479,10 @@ body{
     list-style: none;
     text-align: center;
     width: 60vw;
-    justify-content: end;
+    justify-content: flex-end;
     margin-right: 2rem;
   }
+
   .nav-links:hover {
     background-color: transparent;
     border-bottom: 4px solid #fff;
@@ -418,76 +495,76 @@ body{
 .barreSigning {
   width: 500px;
   float: right;
-    width: 420px;
-    float: right;
+  width: 420px;
+  float: right;
 }
 
-.bout{
-    background: none;
-    border : none;
-    color : #303841;
-    font-family: 'Roboto Regular 400', sans-serif;
-    size: 14px;
-    margin : 5px
+.bout {
+  background: none;
+  border: none;
+  color: #303841;
+  font-family: 'Roboto Regular 400', sans-serif;
+  size: 14px;
+  margin: 5px
 }
 
-.boutC{
-    background: none;
-    border : none;
-    color : #303841;
-    font-family: 'Roboto Regular 400', sans-serif;
-    size: 14px;
-    margin-right: 10px;
+.boutC {
+  background: none;
+  border: none;
+  color: #303841;
+  font-family: 'Roboto Regular 400', sans-serif;
+  size: 14px;
+  margin-right: 10px;
 }
 
-.bout:hover{
-    color : blue;
-    text-decoration: underline;
+.bout:hover {
+  color: blue;
+  text-decoration: underline;
 }
 
-.boutC:hover{
-    color : blue;
-    text-decoration: underline;
+.boutC:hover {
+  color: blue;
+  text-decoration: underline;
 }
 
-.inscripBout{
-    background-color: #F9C307;
-    color : #303841;
-    border: none;
-    border-radius: 5px;
-    padding: 8px;
-    width: 110px;
-    font-family: 'Roboto Bold 700', sans-serif;
-    size: 14px;
+.inscripBout {
+  background-color: #F9C307;
+  color: #303841;
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  width: 110px;
+  font-family: 'Roboto Bold 700', sans-serif;
+  size: 14px;
 }
 
-.inscripBout:hover{
-    background-color: #FBDB6B;
+.inscripBout:hover {
+  background-color: #FBDB6B;
 }
 
 
 /*============ Texte au centre ==============*/
 
-.milieuDePage{
-    display: flex;
-    flex-direction: column;
-    width: 110%;
-    float: left;
+.milieuDePage {
+  display: flex;
+  flex-direction: column;
+  width: 110%;
+  float: left;
 }
 
-.centerText{
-    display: flex;
-    flex-direction: column;
-    margin-left: 1em;
-    margin-top: 1em;
+.centerText {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1em;
+  margin-top: 1em;
 }
 
-.accH2{
-    font-family: 'Roboto Bold 700', sans-serif;
-    font-size: 40px;
-    margin-bottom: 10px;
-    width: 420px;
-    float: right;
+.accH2 {
+  font-family: 'Roboto Bold 700', sans-serif;
+  font-size: 40px;
+  margin-bottom: 10px;
+  width: 420px;
+  float: right;
 }
 
 .bout {
@@ -557,62 +634,62 @@ h2 {
 
 /*========== Texte et bouton évaluation ===========*/
 
-.accH3{
-    font-family: 'Roboto Bold 700', sans-serif;
-    font-size: 26px;
-    margin-top: 3em;
+.accH3 {
+  font-family: 'Roboto Bold 700', sans-serif;
+  font-size: 26px;
+  margin-top: 3em;
 }
 
-.boutPoutEval{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-left: 1em;
-    margin-top: -10px;
+.boutPoutEval {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 1em;
+  margin-top: -10px;
 }
 
-.boutonFleche{
-    background-color: #F9C307;
-    color : #303841;
-    border: none;
-    border-radius: 5px;
-    width: 55px;
-    height: 50px;
-    margin-top: 4.5em;
-    margin-left: 3em;
+.boutonFleche {
+  background-color: #F9C307;
+  color: #303841;
+  border: none;
+  border-radius: 5px;
+  width: 55px;
+  height: 50px;
+  margin-top: 4.5em;
+  margin-left: 3em;
 }
 
-.boutonFleche:hover{
-    background-color: #FBDB6B;
+.boutonFleche:hover {
+  background-color: #FBDB6B;
 }
 
-#imgFleche{
-    width: 90%;
+#imgFleche {
+  width: 90%;
 }
 
 
 /*========== Bas de page ===========*/
 
-.basDePage{
-    margin-top: 0em;
-    width: 100%;
-    float: right;
+.basDePage {
+  margin-top: 0em;
+  width: 100%;
+  float: right;
 }
 
-#poutImg{
-    width: 600px;
-    height: 300px;
-    margin-top : 70px;
-    margin-left: -50px;
+#poutImg {
+  width: 600px;
+  height: 300px;
+  margin-top: 70px;
+  margin-left: -50px;
 
 }
 
 #circle {
-    background: #FBDB6B;
-    border-radius: 50%;
-    width: 500px;
-    height: 450px;
-    margin-left: 140px;
+  background: #FBDB6B;
+  border-radius: 50%;
+  width: 500px;
+  height: 450px;
+  margin-left: 140px;
 }
 
 .boutPoutEval {
@@ -646,215 +723,244 @@ h2 {
 
 
 @media only screen and (max-width: 600px) {
-    .col-1{
-        width: 60%;
-    }
-    .col-2{
-        width: 0%;
-    }
+  .col-1 {
+    width: 60%;
+  }
+
+  .col-2 {
+    width: 0%;
+  }
 }
 
 @media only screen and (min-width: 600px) {
-    .col-1{
-        width: 60%;
-    }
-    .col-2{
-        width: 0%;
-    }
+  .col-1 {
+    width: 60%;
+  }
+
+  .col-2 {
+    width: 0%;
+  }
 }
 
 @media only screen and (min-width: 768px) {
-    .col-1{
-        width: 250px;
-    }
-    .col-2{
-        width: 250px;
-    }
-    .barreSigning{
-        width: 200px;
-    }
+  .col-1 {
+    width: 250px;
+  }
+
+  .col-2 {
+    width: 250px;
+  }
+
+  .barreSigning {
+    width: 200px;
+  }
 
 }
 
-@media only screen and (max-width: 992px){
-    .Logo{
-        display:none;
-    }
-    .barreNav{
-        display:none;
-    }
+@media only screen and (max-width: 992px) {
+  .Logo {
+    display: none;
+  }
+
+  .barreNav {
+    display: none;
+  }
 }
 
 @media only screen and (min-width: 992px) {
-    .col-1{
-        width: 60px;
-    }
-    .col-2{
-        width: 20px;
-    }
-    .burgerNAV{
-        display: none;
-    }
-    .barreSigning{
-        width: 200px;
-    }
-    .Logo{
-        width: 200px
-    }
-    
+  .col-1 {
+    width: 60px;
+  }
+
+  .col-2 {
+    width: 20px;
+  }
+
+  .burgerNAV {
+    display: none;
+  }
+
+  .barreSigning {
+    width: 200px;
+  }
+
+  .Logo {
+    width: 200px
+  }
+
 }
 
 @media only screen and (min-width: 1200px) {
-    .col-1{
-        width: 175px;
-    }
-    .col-2{
-        width: 175px;
-    }
-    .barreSigning{
-        width: 250px;
-    }
+  .col-1 {
+    width: 175px;
+  }
+
+  .col-2 {
+    width: 175px;
+  }
+
+  .barreSigning {
+    width: 250px;
+  }
 }
 
 /*=========== responsiveness ============*/
 
 @media only screen and (max-width: 600px) {
 
-    h2{
-        font-size : 40px;
-    }
-    #poutImg{
-        transform: translate(-30px, -10px);
-    }
+  h2 {
+    font-size: 40px;
+  }
+
+  #poutImg {
+    transform: translate(-30px, -10px);
+  }
 }
 
 @media only screen and (min-width: 600px) {
-    h2{
-        font-size : 40px;
-    }
-    #poutImg{
-        margin-left: 500;
-        transform: translate(-30px, -10px);
-    }
+  h2 {
+    font-size: 40px;
+  }
+
+  #poutImg {
+    margin-left: 500;
+    transform: translate(-30px, -10px);
+  }
 }
 
 @media only screen and (min-width: 768px) {
-    h2{
-        font-size : 50px;
-    }
-    p{
-        font-size: 20px;
-    }
+  h2 {
+    font-size: 50px;
+  }
 
-    .milieuDePage{
-        transform: translate(100px, 0);
-    }
+  p {
+    font-size: 20px;
+  }
 
-    .basDePage{
-        position: relative;
-        width: 100%;
-        float: right;
-    }
-    #poutImg{
-        margin-left: 500;
-        transform: translate(-10px, -30px);
-    }
-    #circle{
-        margin-left: 500;
-        transform: translate(300px, 0px);
-    }
+  .milieuDePage {
+    transform: translate(100px, 0);
+  }
+
+  .basDePage {
+    position: relative;
+    width: 100%;
+    float: right;
+  }
+
+  #poutImg {
+    margin-left: 500;
+    transform: translate(-10px, -30px);
+  }
+
+  #circle {
+    margin-left: 500;
+    transform: translate(300px, 0px);
+  }
 
 }
 
 @media only screen and (min-width: 992px) {
-    h2{
-        font-size : 60px;
-    }
-    h3{
-        font-size : 40px;
-    }
-    p{
-        font-size: 24px;
-    }
+  h2 {
+    font-size: 60px;
+  }
 
-    .milieuDePage{
-        transform: translate(200px, 0);
+  h3 {
+    font-size: 40px;
+  }
 
-    }
+  p {
+    font-size: 24px;
+  }
 
-    .basDePage{
-        position: relative;
-        width: 100%;
-        float: right;
-    }
-    #poutImg{
-        transform: translate(0px, 0px);
-    }
-    #circle{
-        transform: translate(500px, -100px);
-    }
-    .boutonFleche{
-        margin-top: 4.5em;
-    }
+  .milieuDePage {
+    transform: translate(200px, 0);
+
+  }
+
+  .basDePage {
+    position: relative;
+    width: 100%;
+    float: right;
+  }
+
+  #poutImg {
+    transform: translate(0px, 0px);
+  }
+
+  #circle {
+    transform: translate(500px, -100px);
+  }
+
+  .boutonFleche {
+    margin-top: 4.5em;
+  }
 }
 
 @media only screen and (min-width: 1200px) {
-    h2{
-        font-size : 60px;
-    }
-    .milieuDePage{
-        margin-left: 10em;
-    }
+  h2 {
+    font-size: 60px;
+  }
 
-    .basDePage{
-        position: relative;
-        width: 100%;
-        float: right;
-    }
-    #poutImg{
-        margin-left: 500;
-        transform: translate(-50px, -10px);
-        width: 900px;
-        height: 500px;
-    }
-    #circle{
-        margin-left: 500;
-        transform: translate(800px, -200px);
-        width: 700px;
-        height: 700px;
-    }
-    .boutonFleche{
-        margin-top: 5em;
-    }
+  .milieuDePage {
+    margin-left: 10em;
+  }
+
+  .basDePage {
+    position: relative;
+    width: 100%;
+    float: right;
+  }
+
+  #poutImg {
+    margin-left: 500;
+    transform: translate(-50px, -10px);
+    width: 900px;
+    height: 500px;
+  }
+
+  #circle {
+    margin-left: 500;
+    transform: translate(800px, -200px);
+    width: 700px;
+    height: 700px;
+  }
+
+  .boutonFleche {
+    margin-top: 5em;
+  }
 
 }
 
-@media only screen and (min-width: 1600px){
-    .basDePage{
-        position: relative;
-        width: 100%;
-        float: right;
-    }
-    #poutImg{
-        margin-left: 500;
-        transform: translate(-20px, 30px);
-        width: 1100px;
-        height: 600px;
-    }
-    #circle{
-        margin-left: 500;
-        transform: translate(1100px, -300px);
-        width: 1000px;
-        height: 900px;
-    }
-    .boutonFleche{
-        margin-top: 5em;
-    }
+@media only screen and (min-width: 1600px) {
+  .basDePage {
+    position: relative;
+    width: 100%;
+    float: right;
+  }
 
-    h2 {
-        font-size: 40px;
-    }
-    #poutImg {
-        transform: translate(-30px, -10px);
-    }
+  #poutImg {
+    margin-left: 500;
+    transform: translate(-20px, 30px);
+    width: 1100px;
+    height: 600px;
+  }
+
+  #circle {
+    margin-left: 500;
+    transform: translate(1100px, -300px);
+    width: 1000px;
+    height: 900px;
+  }
+
+  .boutonFleche {
+    margin-top: 5em;
+  }
+
+  h2 {
+    font-size: 40px;
+  }
+
+  #poutImg {
+    transform: translate(-30px, -10px);
+  }
 }

@@ -26,7 +26,7 @@ const Header = () => {
           >
             <li>
               <Link
-                href=""
+                href="/"
                 className={styles.navMenu__link}
                 onClick={closeMobileMenu}
               >
@@ -35,7 +35,7 @@ const Header = () => {
             </li>
             <li>
               <Link
-                href="map"
+                href="/map"
                 className={styles.navMenu__link}
                 onClick={closeMobileMenu}
               >
@@ -44,7 +44,7 @@ const Header = () => {
             </li>
             <li>
               <Link
-                href="restaurants"
+                href="/restaurants"
                 className={styles.navMenu__link}
                 onClick={closeMobileMenu}
               >
@@ -53,7 +53,7 @@ const Header = () => {
             </li>
             <li>
               <Link
-                href="products"
+                href="/products"
                 className={styles.navMenu__link}
                 onClick={closeMobileMenu}
               >
@@ -63,10 +63,10 @@ const Header = () => {
           </ul>
         </nav>
         <div className={styles.rightButtons}>
-          <Link href="" className={styles.signIn}>
+          <Link href="/signup" className={styles.signIn}>
             Inscription
           </Link>
-          <Link href="" className={styles.signUp}>
+          <Link href="/signin" className={styles.signUp}>
             Connexion
           </Link>
         </div>
